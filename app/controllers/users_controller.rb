@@ -3,19 +3,23 @@ class UsersController < ApplicationController
   end
   
   def show
-    
   end
   
   def create
-    User.create(user_params)
+    user = User.create(user_params)
     
-    redirect_to "/profile"
-    flash[:success] = "You are now registered and logged in"
+    if user.save
+      redirect_to "/profile"
+      flash[:success] = "You are now registered and logged in"
+    else
+      redirect_to "/register"
+      flash[:error] = user.errors.full_messages.to_sentence
+    end
   end
   
   private
   
     def user_params
-      params.permit(:name, :address, :city, :state, :zip, :email, :password)
+      params.permit(:name, :address, :city, :state, :zip_code, :email_address, :password)
     end
 end
