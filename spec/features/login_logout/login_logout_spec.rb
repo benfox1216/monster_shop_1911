@@ -17,8 +17,9 @@ describe "As a visitor when I visit the login path" do
         it "When I login, I am redirected to my profile page" do 
             visit login_path
             user = create(:regular_user)
-
-            biding.pry
+            admin = create(:admin_user)
+            
+binding.pry
 
             # fill_in :email, with: user.email
             # fill_in :password, with: user.password
