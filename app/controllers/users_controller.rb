@@ -6,14 +6,14 @@ class UsersController < ApplicationController
   end
   
   def create
-    user = User.create(user_params)
+    @user = User.new(user_params)
     
-    if user.save
+    if @user.save
       redirect_to "/profile"
       flash[:success] = "You are now registered and logged in"
     else
-      redirect_to "/register"
-      flash[:error] = user.errors.full_messages.to_sentence
+      flash[:error] = @user.errors.full_messages.to_sentence
+      render :new
     end
   end
   
