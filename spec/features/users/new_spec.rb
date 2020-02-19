@@ -17,22 +17,27 @@ describe "As a visitor" do
     
     it "I can create a new profile" do
       visit '/items'
-      click_link 'Register'
+      
+      within '.topnav' do
+        click_link 'Register'
+      end
+      
       expect(current_path).to eq("/register")
       
-      fill_in "Name", with: @name
-      fill_in "Address", with: @address
-      fill_in "City", with: @city
-      fill_in "State", with: @state
-      fill_in "Zip Code", with: @zip
-      fill_in "Email Address", with: @email
-      fill_in "Password", with: @password
-      fill_in "Confirm Password", with: @confirm_pw
+      fill_in :name, with: @name
+      fill_in :address, with: @address
+      fill_in :city, with: @city
+      fill_in :state, with: @state
+      fill_in :zip_code, with: @zip
+      fill_in :email_address, with: @email
+      fill_in :password, with: @password
+      fill_in :confirm_password, with: @confirm_pw
       
       user = User.last
       
       click_button 'Register'
-      expect(current_path).to eq("/profile/#{user.id}")
+      expect(current_path).to eq("/profile")
+      expect(page).to have_content("You are now registered and logged in")
     end
   end
 end
