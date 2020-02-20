@@ -20,7 +20,7 @@ RSpec.describe 'merchant index page', type: :feature do
     end
 
     it 'cannot see profile and logout if not logged in' do
-      user = create(:regular_user, email: "ben@fox.com", password: "ilovetrucks")
+      user = create(:regular_user, email_address: "ben@fox.com", password: "ilovetrucks")
 
       expect(page).to_not have_link("Profile")
       expect(page).to_not have_link("Logout")

@@ -30,6 +30,14 @@ class LoginController <ApplicationController
         end
     end
 
+    def empty
+        session.delete(:user_id)
+        session.delete(:cart)
+        redirect_to '/'
+        flash[:success] = "You have logged out"
+      end
+
+
     private
 
     def user_params
