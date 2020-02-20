@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :authorized
 
   helper_method :cart, :current_user, :current_admin?, :current_merchant?
 
@@ -16,11 +17,15 @@ class ApplicationController < ActionController::Base
   end
 
   def current_merchant?
-    current_user && (current_user.merchant?) 
+    current_user && current_user.merchant?
   end
 
   def current_admin?
     current_user && current_user.admin?
+  end
+
+  def authorized
+    redirect_to '/' unless !current_user.nil?
   end
 
 end
