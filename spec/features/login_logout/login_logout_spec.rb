@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-describe "When I login, I am redirected to my designated page" do 
+describe "When I login, I am redirected to my designated page" do
     describe "As regular user" do
-        it "When I login, I am redirected to my profile page" do 
+        it "When I login, I am redirected to my profile page" do
             visit login_path
 
             user = create(:regular_user)
-    
+
             fill_in :email, with: user.email_address
             fill_in :password, with: user.password
-            
+
             click_button "Login"
 
             expect(current_path).to eq(user_path)
@@ -18,14 +18,14 @@ describe "When I login, I am redirected to my designated page" do
     end
 
     describe "As merchant user" do
-        it "When I login, I am redirected to my merchant dashboard page" do 
+        it "When I login, I am redirected to my merchant dashboard page" do
             visit login_path
-            
+
             merchant = create(:merchant_user)
-    
+
             fill_in :email, with: merchant.email_address
             fill_in :password, with: merchant.password
-            
+
             click_button "Login"
 
             expect(current_path).to eq(merchant_path)
@@ -34,14 +34,14 @@ describe "When I login, I am redirected to my designated page" do
     end
 
     describe "admin user" do
-        it "When I login, I am redirected to my admin dashboard page" do 
+        it "When I login, I am redirected to my admin dashboard page" do
             visit login_path
 
             admin = create(:admin_user)
-    
+
             fill_in :email, with: admin.email_address
             fill_in :password, with: admin.password
-            
+
             click_button 'Login'
 
             expect(current_path).to eq(admin_path)
@@ -54,10 +54,10 @@ describe "When I login, I am redirected to my designated page" do
             visit login_path
 
             user = create(:regular_user)
-    
+
             fill_in :email, with: user.email_address
             fill_in :password, with: "poop"
-            
+
             click_button 'Login'
 
             expect(current_path).to eq(login_path)
@@ -70,10 +70,10 @@ describe "When I login, I am redirected to my designated page" do
                 visit login_path
 
                 user = create(:regular_user)
-        
+
                 fill_in :email, with: user.email_address
                 fill_in :password, with: user.password
-                
+
                 click_button "Login"
 
                 visit login_path
@@ -90,7 +90,7 @@ describe "When I login, I am redirected to my designated page" do
 
                 fill_in :email, with: merchant.email_address
                 fill_in :password, with: merchant.password
-                
+
                 click_button "Login"
 
                 visit login_path
@@ -105,10 +105,10 @@ describe "When I login, I am redirected to my designated page" do
                 visit login_path
 
                 admin = create(:admin_user)
-        
+
                 fill_in :email, with: admin.email_address
                 fill_in :password, with: admin.password
-                
+
                 click_button 'Login'
 
                 visit login_path
