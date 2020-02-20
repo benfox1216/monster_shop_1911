@@ -20,14 +20,17 @@ RSpec.describe 'merchant index page', type: :feature do
     end
 
     it 'cannot see profile and logout if not logged in' do
-      visit '/'
+      user = create(:regular_user, email: "ben@fox.com", password: "ilovetrucks")
 
       expect(page).to_not have_link("Profile")
       expect(page).to_not have_link("Logout")
 
-      user = User.create(name: "Yogi Bear", address: "Sherwood Forest", city: "Londontown", state: "Denial", zip_code: "20203", email_address: "pickanickbasket@booboo.com", password: "yumyumyum")
+      visit '/login'
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      fill_in :email, with: "ben@fox.com"
+      fill_in :password, with: "ilovetrucks"
+
+      click_button "Login"
 
       expect(page).to have_link("Profile")
       expect(page).to have_link("Logout")
