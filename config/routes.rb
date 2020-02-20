@@ -38,7 +38,8 @@ Rails.application.routes.draw do
 
   get '/login', to: 'login#new'
   post '/login', to: 'login#create'
-  
+  delete '/logout', to: 'login#empty'
+
   get "/register", to: "users#new"
   post "/register", to: "users#create"
   get "/profile", to: "users#show"
