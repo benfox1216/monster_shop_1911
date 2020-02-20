@@ -1,65 +1,52 @@
 require 'rails_helper'
 
-describe "As a visitor when I visit the login path" do
-    it "I see a field to enter my email address and password" do
-        visit login_path
-
-        email = 'danmoron31@gmail.com'
-        password = '123goodpassword'
-        
-        fill_in :email, with: email
-        fill_in :password, with: password
-
-        expect(page).to have_button("Login")
-    end
-  
-    describe "regular user" do
-        it "When I login, I am redirected to my profile page" do 
-            visit login_path
-            user = create(:regular_user)
-            admin = create(:admin_user)
-            
-binding.pry
-
-            # fill_in :email, with: user.email
-            # fill_in :password, with: user.password
-        
-        end
-    end 
-  
-    # describe " merchant user" do
+describe "When I login, I am redirected to my profile page" do 
+    # describe "As regular user" do
     #     it "When I login, I am redirected to my merchant dashboard page" do 
     #         visit login_path
 
-    #         email = 'danmoron31@gmail.com'
-    #         password = '123goodpassword'
+    #         user = create(:regular_user)
+    
+    #         fill_in :email, with: user.email_address
+    #         fill_in :password, with: user.password
             
-    #         fill_in :email, with: email
-    #         fill_in :password, with: password
-    #     end
-    # end 
+    #         click_button "Login"
 
-    # describe "admin user" do
-    #     it "When I login, I am redirected to my admin dashboard page" do 
+    #         expect(current_path).to eq(user_path)
+    #         expect(page).to have_content("#{user.name}, you are now logged in!")
+    #     end
+    # end
+
+    # describe "As merchant user" do
+    #     it "When I login, I am redirected to my merchant dashboard page" do 
     #         visit login_path
-
-    #         email = 'danmoron31@gmail.com'
-    #         password = '123goodpassword'
             
-    #         fill_in :email, with: email
-    #         fill_in :password, with: password
+    #         merchant = create(:merchant_user)
+    
+    #         fill_in :email, with: merchant.email_address
+    #         fill_in :password, with: merchant.password
+            
+    #         click_button "Login"
+
+    #         expect(current_path).to eq(merchants_path)
+    #         expect(page).to have_content("#{merchant.name}, you are now logged in!")
     #     end
-    # end 
-  
-end
+    # end
+    describe "admin user" do
+        it "When I login, I am redirected to my merchant dashboard page" do 
+            visit login_path
+
+            admin = create(:admin_user)
+    
+            fill_in :email, with: admin.email_address
+            fill_in :password, with: admin.password
+            
+            click_button 'Login'
+
+            expect(current_path).to eq(admin_path)
+            expect(page).to have_content("#{admin.name}, you are now logged in!")
+        end
+    end 
+end 
 
 
-
-# As a visitor
-# When I visit the login path
-# I see a field to enter my email address and password
-# When I submit valid information
-# If I am a regular user, I am redirected to my profile page
-# If I am a merchant user, I am redirected to my merchant dashboard page
-# If I am an admin user, I am redirected to my admin dashboard page
-# And I see a flash message that I am logged in
