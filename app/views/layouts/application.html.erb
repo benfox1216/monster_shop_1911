@@ -14,6 +14,13 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+      <% if current_merchant? %>
+        <%= link_to "Merchant Dashboard", "/merchant" %>
+      <% end %>
+      <% if current_admin? %>
+        <%= link_to "Admin Dashboard", "/admin" %>
+        <%= link_to "All Users", "/admin/users" %>
+      <% end %>
       <% if current_user %>
         <%= link_to "Logout", "/logout"%>
         <%= link_to "Profile", "/profile"%>
@@ -21,8 +28,6 @@
         <%= link_to "Login", "/login"%>
         <%= link_to "Register", "/register"%>
       <% end %>
-
-
     </nav>
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">
