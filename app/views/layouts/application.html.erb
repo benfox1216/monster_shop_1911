@@ -14,7 +14,7 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-      <% if session[:user_id] %>
+      <% if current_user %>
         <%= link_to "Logout", "/logout"%>
         <%= link_to "Profile", "/profile"%>
       <% else %>
