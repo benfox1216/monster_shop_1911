@@ -14,21 +14,19 @@ describe "As a visitor when I visit the login path" do
     end
   
     describe "regular user" do
-        it "When I login, I am redirected to my profile page" do 
+        it "When I login, I am redirected to my profile page" do
             visit login_path
             user = create(:regular_user)
             admin = create(:admin_user)
             
-binding.pry
-
             # fill_in :email, with: user.email
             # fill_in :password, with: user.password
         
         end
-    end 
+    end
   
     # describe " merchant user" do
-    #     it "When I login, I am redirected to my merchant dashboard page" do 
+    #     it "When I login, I am redirected to my merchant dashboard page" do
     #         visit login_path
 
     #         email = 'danmoron31@gmail.com'
@@ -37,10 +35,10 @@ binding.pry
     #         fill_in :email, with: email
     #         fill_in :password, with: password
     #     end
-    # end 
+    # end
 
     # describe "admin user" do
-    #     it "When I login, I am redirected to my admin dashboard page" do 
+    #     it "When I login, I am redirected to my admin dashboard page" do
     #         visit login_path
 
     #         email = 'danmoron31@gmail.com'
@@ -49,7 +47,7 @@ binding.pry
     #         fill_in :email, with: email
     #         fill_in :password, with: password
     #     end
-    # end 
+    # end
   
 end
 
