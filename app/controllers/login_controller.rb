@@ -24,7 +24,6 @@ class LoginController <ApplicationController
     private
 
     def user_params
-        # params.permit(:email, :password) Once we find the user this should be the only params needed 
-      params.permit(:name, :address, :city, :state, :zip_code, :email_address, :password)
+        params.permit(:name, :email, :password) 
     end
 end 

@@ -47,9 +47,9 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
   end 
   namespace :user do
-    get '/', to: 'user#profle'
+    get '/', to: 'dashboard#index'
   end 
   namespace :merchant do
-    get '/', to: 'merchant#dashboard'
+    get '/', to: 'dashboard#index'
   end
 end
