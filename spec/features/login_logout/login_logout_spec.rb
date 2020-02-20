@@ -46,7 +46,24 @@ describe "When I login, I am redirected to my profile page" do
             expect(current_path).to eq(admin_path)
             expect(page).to have_content("#{admin.name}, you are now logged in!")
         end
-    end 
-end 
+    end
+
+    describe "As a visitor" do
+        it "I submit invalid information, then I am redirected to the login page" do
+            visit login_path
+
+            user = create(:regular_user)
+    
+            fill_in :email, with: user.email_address
+            fill_in :password, with: "poop"
+            
+            click_button 'Login'
+
+            expect(current_path).to eq(login_path)
+            expect(page).to have_content('Invalid credentials')
+        end
+      end
+    end
+    
 
 

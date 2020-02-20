@@ -17,7 +17,8 @@ class LoginController <ApplicationController
             session[:user_id] = user.id
             flash[:success] = "#{user.name}, you are now logged in!"
         else 
-            flash[:error] = 'Invalid email or password'
+            flash[:error] = 'Invalid credentials'
+            redirect_to login_path
         end 
     end
 
