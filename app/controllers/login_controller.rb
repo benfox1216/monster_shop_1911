@@ -1,5 +1,4 @@
 class LoginController <ApplicationController
-    skip_before_action :authorized, only: [:new, :create]
 
     def new 
         if current_user 
@@ -9,7 +8,8 @@ class LoginController <ApplicationController
     end 
 
     def create
-        if user = User.find_by(email_address: params[:email])
+        if User.find_by(email_address: params[:email])
+            user = User.find_by(email_address: params[:email])
             if user.password == user_params[:password]
                 if user.default?
                     redirect_to user_path
@@ -24,7 +24,10 @@ class LoginController <ApplicationController
                 flash[:error] = 'Invalid credentials'
                 redirect_to login_path
             end 
-        end 
+        else
+            flash[:error] = 'Invalid User'
+            redirect_to login_path
+        end
     end
 
     private
