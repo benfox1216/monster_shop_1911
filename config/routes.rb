@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   end 
   namespace :user do
     get '/', to: 'dashboard#index'
+    # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible. 
   end 
   namespace :merchant do
     get '/', to: 'dashboard#index'
