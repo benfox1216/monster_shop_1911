@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20200220225525) do
     t.string "state"
     t.string "zip_code"
     t.string "email_address"
-    t.string "password"
+    t.string "password_digest"
     t.integer "role", default: 0
   end
 

@@ -113,4 +113,103 @@ describe "When I login, I am redirected to my designated page" do
                 expect(page).to have_content("#{admin.name}, you already logged in.")
             end
         end
+        
+        describe "As a regular user when I visit the logout path and I am logged out" do
+            it "I am redirected to the welcome page and the cart is cleared" do
+                meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+                tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+
+                visit login_path
+
+                user = create(:regular_user)
+
+                fill_in :email, with: user.email_address
+                fill_in :password, with: user.password
+
+                click_button "Login"
+                
+                visit "/items/#{tire.id}"
+                click_on "Add To Cart"
+                
+                within 'nav' do
+                    expect(page).to have_content("Cart: 1")
+                end
+
+                click_link "Logout"
+
+                expect(current_path).to eq('/')
+                expect(page).to have_content("WELCOME TO THE JUNGLE")
+                expect(page).to have_content("You have logged out")
+
+                within 'nav' do
+                    expect(page).to have_content("Cart: 0")
+                end
+            end
+        end
+
+        describe "As a merchant user when I visit the logout path and I am logged out" do
+            it "I am redirected to the welcome page" do #I dont think merchants have carts? confrim
+                # meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+                # tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+
+                visit login_path
+
+                merchant = create(:merchant_user)
+
+                fill_in :email, with: merchant.email_address
+                fill_in :password, with: merchant.password
+
+                click_button "Login"
+                
+                # visit "/items/#{tire.id}"
+                # click_on "Add To Cart"
+                
+                # within 'nav' do
+                #     expect(page).to have_content("Cart: 1")
+                # end
+
+                click_link "Logout"
+
+                expect(current_path).to eq('/')
+                expect(page).to have_content("WELCOME TO THE JUNGLE")
+                expect(page).to have_content("You have logged out")
+
+                # within 'nav' do
+                #     expect(page).to have_content("Cart: 0")
+                # end
+            end
+        end
+
+        describe "As a admin user when I visit the logout path and I am logged out" do
+            it "I am redirected to the welcome page" do #I dont think admins have carts? confrim
+                # meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+                # tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+
+                visit login_path
+
+                admin = create(:admin_user)
+
+                fill_in :email, with: admin.email_address
+                fill_in :password, with: admin.password
+
+                click_button "Login"
+                
+                # visit "/items/#{tire.id}"
+                # click_on "Add To Cart"
+                
+                # within 'nav' do
+                #     expect(page).to have_content("Cart: 1")
+                # end
+
+                click_link "Logout"
+
+                expect(current_path).to eq('/')
+                expect(page).to have_content("WELCOME TO THE JUNGLE")
+                expect(page).to have_content("You have logged out")
+
+                # within 'nav' do
+                #     expect(page).to have_content("Cart: 0")
+                # end
+            end
+        end
     end

@@ -1,4 +1,5 @@
 class User::DashboardController < User::BaseController
-    def index
-    end
-end 
+
+  def index
+  end
+end
