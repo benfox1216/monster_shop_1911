@@ -25,5 +25,19 @@ describe "As a registered user" do
             expect(page).to have_content("keyboard")
             expect(page).to have_content("You have updated your profle!")
         end 
+        # it "Can edit password " do
+        #     visit profile_path
+
+        #     click_button("Edit My Password") 
+
+        #     expect(current_path).to eq(profile_edit_path)
+            
+            
+        #     click_on "Submit"
+            
+        #     expect(current_path).to eq(profile_path)
+        #     expect(page).to have_content("keyboard")
+        #     expect(page).to have_content("You have updated your profle!")
+        # end 
     end      
 end
