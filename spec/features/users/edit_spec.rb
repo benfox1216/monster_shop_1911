@@ -20,10 +20,10 @@ describe "As a registered user" do
             fill_in :name, with: "keyboard"
             
             click_on "Submit"
+            
             expect(current_path).to eq(profile_path)
             expect(page).to have_content("keyboard")
             expect(page).to have_content("You have updated your profle!")
-            save_and_open_page
         end 
     end      
 end
