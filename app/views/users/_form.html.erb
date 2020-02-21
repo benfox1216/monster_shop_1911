@@ -1,27 +1,27 @@
 <%= form_tag path, method: method do %>
   <%= label_tag :name %>
-  <%= text_field_tag :name, name, required: true %>
+  <%= text_field_tag :name, name, required: true %><br>
   
   <%= label_tag :address %>
-  <%= text_field_tag :address, address, required: true %>
+  <%= text_field_tag :address, address, required: true %><br>
   
   <%= label_tag :city %>
-  <%= text_field_tag :city, city, required: true %>
+  <%= text_field_tag :city, city, required: true %><br>
   
   <%= label_tag :state %>
-  <%= text_field_tag :state, state, required: true %>
+  <%= text_field_tag :state, state, required: true %><br>
   
   <%= label_tag "Zip Code" %>
-  <%= text_field_tag :zip_code, zip_code, required: true %>
+  <%= text_field_tag :zip_code, zip_code, required: true %><br>
   
   <%= label_tag "Email Address" %>
-  <%= text_field_tag :email_address, email_address, required: true %>
+  <%= text_field_tag :email_address, email_address, required: true %><br>
   
   <%= label_tag :password %>
-  <%= text_field_tag :password %>
+  <%= text_field_tag :password %><br>
   
   <%= label_tag "Confirm Password" %>
-  <%= text_field_tag :confirm_password %>
+  <%= text_field_tag :confirm_password %><br>
 
   <%= submit_tag button_text %>
 <% end %>

@@ -1,0 +1,10 @@
+<%= render partial: 'form', locals: {path: profile_edit_path,
+                                     method: :patch,
+                                     button_text: 'Submit',
+                                     name: (@user.name if @user),
+                                     address: (@user.address if @user),
+                                     city: (@user.city if @user),
+                                     state: (@user.state if @user),
+                                     zip_code: (@user.zip_code if @user),
+                                     email_address: (@user.email_address if @user)
+                                    } %>

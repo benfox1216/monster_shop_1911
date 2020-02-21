@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    
     if @user.save
       session[:user_id] = @user.id
       redirect_to profile_path
@@ -22,6 +21,17 @@ class UsersController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @user = current_user
+  end 
+
+  def update
+    user = current_user
+    user.update(user_params)
+    redirect_to profile_path
+    flash[:success] = "You have updated your profle!"
+  end 
   
   private
   
