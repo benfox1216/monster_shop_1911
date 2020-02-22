@@ -55,6 +55,34 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
+      
+      it "I can increment the number of a single item, but not beyond the inventory" do
+        @pencil.inventory = 3
+        visit '/cart'
+        
+        within "#cart-item-#{@pencil.id}" do
+          expect(page).to have_content("1")
+          click_link "+"
+          expect(page).to have_content("2")
+          click_link "+"
+          expect(page).to have_content("2")
+        end
+      end
+      
+      it "I can decrement the number of a single item, and at 0 it's removed from my cart" do
+        visit "/items/#{@pencil.id}"
+        click_on "Add To Cart"
+        visit '/cart'
+        
+        within "#cart-item-#{@pencil.id}" do
+          expect(page).to have_content("2")
+          click_link "-"
+          expect(page).to have_content("1")
+          click_link "-"
+        end
+        save_and_open_page
+        expect(page).to_not have_content("#{@pencil.name}")
+      end
     end
   end
   describe "When I haven't added anything to my cart" do

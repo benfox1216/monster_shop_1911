@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get "/cart", to: "cart#show"
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
+  post "/cart/:item_id/:increment_decrement", to: "cart#increment_decrement"
 
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
@@ -44,12 +45,12 @@ Rails.application.routes.draw do
   post "/register", to: "users#create"
   get "/profile", to: "users#show"
 
-  namespace :admin do 
+  namespace :admin do
     get '/', to: 'dashboard#index'
-  end 
+  end
   namespace :user do
     get '/', to: 'dashboard#index'
-  end 
+  end
   namespace :merchant do
     get '/', to: 'dashboard#index'
   end
