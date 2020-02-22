@@ -83,6 +83,12 @@ RSpec.describe 'Cart show' do
         save_and_open_page
         expect(page).to_not have_content("#{@pencil.name}")
       end
+      
+      it "I cannot checkout if I am not registered/logged in" do
+        visit '/cart'
+        expect(page).to have_content("Please register or log in to checkout")
+        expect(page).to_not have_link("Checkout")
+      end
     end
   end
   describe "When I haven't added anything to my cart" do
