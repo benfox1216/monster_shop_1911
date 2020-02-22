@@ -1,11 +1,11 @@
-class PasswordsController < ApplicationController
+class User::PasswordsController < User::BaseController
   
   def edit
     @user = current_user
   end
 
   def update
-    if params[:password] == params[:password_confirmation]
+    if params[:password] == params[:confirm_password]
         current_user.update(user_params)
         redirect_to "/profile"
         flash[:notice] = "Your password has been updated."

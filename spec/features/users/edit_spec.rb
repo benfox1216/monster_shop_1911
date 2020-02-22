@@ -27,15 +27,16 @@ describe "As a registered user" do
       expect(page).to have_content("keyboard")
       expect(page).to have_content("You have updated your profle!")
     end 
-    xit "Can edit password " do
+
+    it "Can edit password " do
       visit profile_path
       click_link("Edit My Password") 
-      expect(current_path).to eq(password_edit_path)
+      expect(current_path).to eq(user_password_edit_path)
       
       fill_in :password, with: "new pass"
       fill_in :confirm_password, with: "new pass"
       
-      click_button("Update Password")
+      click_on("Update Password")
       
       expect(current_path).to eq(profile_path)
       expect(page).to have_content("Your password has been updated.")
