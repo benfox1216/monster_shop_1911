@@ -1,0 +1,10 @@
+<%= form_tag password_edit_path, method: :patch do %>
+  
+  <%= label_tag :password %>
+  <%= text_field_tag :password %><br>
+  
+  <%= label_tag :confirm_password  %>
+  <%= text_field_tag :confirm_password %><br>
+
+  <%= submit_tag "Update Password" %>
+<% end %>
