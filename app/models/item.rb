@@ -24,5 +24,12 @@ class Item <ApplicationRecord
   def no_orders?
     item_orders.empty?
   end
-
+  
+  def self.most_popular
+    self.where(active?: true).order(purchased: :desc)
+  end
+  
+  def self.least_popular
+    self.where(active?: true).order(:purchased)
+  end
 end
