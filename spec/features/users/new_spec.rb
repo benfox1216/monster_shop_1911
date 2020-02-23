@@ -34,7 +34,7 @@ describe "As a visitor" do
       fill_in :confirm_password, with: @confirm_pw
       
       click_button 'Register'
-      expect(current_path).to eq("/profile")
+      expect(current_path).to eq(profile_path)
       expect(page).to have_content("You are now registered and logged in")
     end
     

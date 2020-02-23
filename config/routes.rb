@@ -44,13 +44,19 @@ Rails.application.routes.draw do
   get "/register", to: "users#new"
   post "/register", to: "users#create"
   get "/profile", to: "users#show"
+  get '/profile/edit', to:'users#edit'
+  patch '/profile/edit', to:'users#update'
+  get '/password/edit', to:'passwords#edit'
+  patch '/password/edit', to:'passwords#update'
 
   namespace :admin do
     get '/', to: 'dashboard#index'
   end
   namespace :user do
     get '/', to: 'dashboard#index'
-  end
+    # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible.
+
+  end 
   namespace :merchant do
     get '/', to: 'dashboard#index'
   end
