@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   get "/profile", to: "users#show"
   get '/profile/edit', to:'users#edit'
   patch '/profile/edit', to:'users#update'
+  get '/password/edit', to:'passwords#edit'
+  patch '/password/edit', to:'passwords#update'
 
   namespace :admin do 
     get '/', to: 'dashboard#index'
@@ -52,8 +54,6 @@ Rails.application.routes.draw do
   namespace :user do
     get '/', to: 'dashboard#index'
     # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible. 
-    get '/password/edit', to:'passwords#edit'
-    patch '/password/edit', to:'passwords#update'
 
   end 
   namespace :merchant do
