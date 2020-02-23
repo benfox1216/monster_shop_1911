@@ -80,7 +80,7 @@ RSpec.describe 'Cart show' do
           expect(page).to have_content("1")
           click_link "-"
         end
-        save_and_open_page
+        
         expect(page).to_not have_content("#{@pencil.name}")
       end
       
@@ -89,8 +89,20 @@ RSpec.describe 'Cart show' do
         expect(page).to have_content("Please register or log in to checkout")
         expect(page).to_not have_link("Checkout")
       end
+      
+      it "As a registered user, I can checkout and create an order" do
+        visit login_path
+        user = create(:regular_user)
+        fill_in :email, with: user.email_address
+        fill_in :password, with: user.password
+        click_button "Login"
+        visit '/cart'
+        
+        click_link "Checkout"
+      end
     end
   end
+  
   describe "When I haven't added anything to my cart" do
     describe "and visit my cart show page" do
       it "I see a message saying my cart is empty" do
