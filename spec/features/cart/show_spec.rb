@@ -90,7 +90,7 @@ RSpec.describe 'Cart show' do
         expect(page).to_not have_link("Checkout")
       end
       
-      it "As a registered user, I can checkout and create an order" do
+      xit "As a registered user, I can checkout and create an order" do
         visit login_path
         user = create(:regular_user)
         fill_in :email, with: user.email_address
