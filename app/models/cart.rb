@@ -5,9 +5,9 @@ class Cart
     @contents = contents
   end
 
-  def add_item(item)
-    @contents[item] = 0 if !@contents[item]
-    @contents[item] += 1
+  def add_item(item_id)
+    @contents[item_id] = 0 if !@contents[item_id]
+    @contents[item_id] += 1
   end
 
   def total_items
@@ -31,5 +31,20 @@ class Cart
       Item.find(item_id).price * quantity
     end
   end
+  
+  def limit_reached?(item_id)
+    Item.find(item_id).inventory == @contents[item_id]
+  end
 
+  def add_quantity(item_id)
+    add_item(item_id)
+  end
+  
+  def subtract_quantity(item_id)
+    @contents[item_id] -= 1
+  end
+  
+  def quantity_zero?(item_id)
+    @contents[item_id] == 0
+  end
 end
