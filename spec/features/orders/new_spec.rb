@@ -15,6 +15,9 @@ RSpec.describe("New Order Page") do
       click_on "Add To Cart"
       visit "/items/#{@pencil.id}"
       click_on "Add To Cart"
+      
+      @user = create(:regular_user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
     it "I see all the information about my current cart" do
       visit "/cart"

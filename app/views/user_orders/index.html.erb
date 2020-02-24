@@ -1,0 +1,16 @@
+<h1>Orders for: <%= current_user.name %></h1>
+<h3><%= current_user.address %></h3>
+<h3><%= current_user.city %></h3>
+<h3><%= current_user.state %></h3>
+<h3><%= current_user.zip_code %></h3>
+
+<% @user_orders.each do |order| %>
+  <section id="order-<%= order.id %>">
+    <p>Order ID: <%= link_to order.id, "/profile/orders/#{order.id}" %></p>
+    <p>Created: <%= order.created_at %></p>
+    <p>Updated: <%= order.updated_at %></p>
+    <p>Status: <%= order.status %></p>
+    <p>Items: <%= order.items_count %></p>
+    <p>Total: $<%= order.grandtotal %></p>
+  </section>
+<% end %>

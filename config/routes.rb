@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get "/cart", to: "cart#show"
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
+  post "/cart/:item_id/:increment_decrement", to: "cart#increment_decrement"
 
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
@@ -44,18 +45,20 @@ Rails.application.routes.draw do
   post "/register", to: "users#create"
   get "/profile", to: "users#show"
   get '/profile/edit', to:'users#edit'
+  get '/profile/orders', to: 'user_orders#index'
+  get '/profile/orders/:order_id', to: 'user_orders#show'
   patch '/profile/edit', to:'users#update'
   get '/password/edit', to:'passwords#edit'
   patch '/password/edit', to:'passwords#update'
 
-  namespace :admin do 
+  namespace :admin do
     get '/', to: 'dashboard#index'
-  end 
+  end
   namespace :user do
     get '/', to: 'dashboard#index'
-    # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible. 
+    # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible.
 
-  end 
+  end
   namespace :merchant do
     get '/', to: 'dashboard#index'
   end

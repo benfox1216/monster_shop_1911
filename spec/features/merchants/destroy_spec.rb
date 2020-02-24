@@ -35,38 +35,17 @@ RSpec.describe "As a visitor" do
       pencil = mike.items.create(name: "Yellow Pencil", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 100)
       pulltoy = brian.items.create(name: "Pulltoy", description: "It'll never fall apart!", price: 14, image: "https://www.valupets.com/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/l/a/large_rubber_dog_pull_toy.jpg", inventory: 7)
 
+      user = create(:regular_user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit "/items/#{paper.id}"
-      click_on "Add To Cart"
-      visit "/items/#{paper.id}"
-      click_on "Add To Cart"
-      visit "/items/#{tire.id}"
-      click_on "Add To Cart"
-      visit "/items/#{pencil.id}"
-      click_on "Add To Cart"
-
-      visit "/cart"
-      click_on "Checkout"
-
-      name = "Bert"
-      address = "123 Sesame St."
-      city = "NYC"
-      state = "New York"
-      zip = 10001
-
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-      fill_in :zip, with: zip
-
-      click_button "Create Order"
-
+      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      item_order_1 = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
+      
       visit "/merchants/#{meg.id}"
       expect(page).to_not have_link("Delete Merchant")
 
-      # visit "/merchants/#{brian.id}"
-      # expect(page).to have_link("Delete Merchant")
+      visit "/merchants/#{brian.id}"
+      expect(page).to have_link("Delete Merchant")
     end
   end
 end

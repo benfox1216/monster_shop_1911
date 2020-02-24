@@ -4,4 +4,9 @@ class User < ApplicationRecord
   validates_presence_of :email_address, uniqueness: true
   has_secure_password
   enum role: %w(default admin merchant)
-end 
+  has_many :orders
+  
+  def has_orders?
+    !orders.empty?
+  end
+end
