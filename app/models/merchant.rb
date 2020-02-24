@@ -8,7 +8,6 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
-
   def no_orders?
     item_orders.empty?
   end

@@ -89,17 +89,6 @@ RSpec.describe 'Cart show' do
         expect(page).to have_content("Please register or log in to checkout")
         expect(page).to_not have_link("Checkout")
       end
-      
-      xit "As a registered user, I can checkout and create an order" do
-        visit login_path
-        user = create(:regular_user)
-        fill_in :email, with: user.email_address
-        fill_in :password, with: user.password
-        click_button "Login"
-        visit '/cart'
-        
-        click_link "Checkout"
-      end
     end
   end
   

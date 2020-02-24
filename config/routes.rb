@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   post "/register", to: "users#create"
   get "/profile", to: "users#show"
   get '/profile/edit', to:'users#edit'
+  get '/profile/orders', to: 'user_orders#index'
   patch '/profile/edit', to:'users#update'
   get '/password/edit', to:'passwords#edit'
   patch '/password/edit', to:'passwords#update'
@@ -56,7 +57,7 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
     # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible.
 
-  end 
+  end
   namespace :merchant do
     get '/', to: 'dashboard#index'
   end
