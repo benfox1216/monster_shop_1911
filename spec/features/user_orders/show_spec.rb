@@ -49,5 +49,16 @@ describe "As a registered user" do
         expect(page).to have_css("img[src*='#{@high_roller_ball.image}']")
       end
     end
+    
+    it "I'm able to cancel an order, where the required outcomes occur" do
+      @item_order_1[:status] = "fulfilled"
+      @item_order_2[:status] = "fulfilled"
+      click_link "Cancel Order"
+      @item_order_1.reload
+      @item_order_2.reload
+      
+      visit "/profile/orders/#{@order.id}"
+      expect(@item_order_1[:status]).to eq("unfulfilled")
+    end
   end
 end

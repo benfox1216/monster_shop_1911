@@ -6,4 +6,10 @@ class UserOrdersController < ApplicationController
   def show
     @order = Order.find(params[:order_id])
   end
+  
+  def update
+    ItemOrder.where(order_id: params[:order_id]).each do |item|
+      item.update(status: "unfulfilled")
+    end
+  end
 end
