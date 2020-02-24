@@ -11,8 +11,8 @@ describe "As a registered user" do
       @high_roller_ball = bike_shop.items.create(name: "High Roller Ball", description: "Stays on surface", price: 100, image: "https://www.rei.com/media/3cda9ce5-420c-47d2-8095-bdc6ed84923c?size=784x588", inventory: 12, purchased: 19)
       
       @order = @user.orders.create!(name: "Jack", address: "123 Heart Pl", city: "Reno", state: "NV", zip: "19443")
-      ItemOrder.create!(item_id: @tire.id, order_id: @order.id, price: @tire.price, quantity: 2)
-      ItemOrder.create!(item_id: @high_roller_ball.id, order_id: @order.id, price: @high_roller_ball.price, quantity: 3)
+      @item_order_1 = ItemOrder.create!(item_id: @tire.id, order_id: @order.id, price: @tire.price, quantity: 2)
+      @item_order_2 = ItemOrder.create!(item_id: @high_roller_ball.id, order_id: @order.id, price: @high_roller_ball.price, quantity: 3)
       
       visit "/profile/orders"
       
@@ -23,7 +23,7 @@ describe "As a registered user" do
       expect(current_path).to eq("/profile/orders/#{@order.id}")
     end
     
-    xit "On my profile orders order show page, I see all the required info for that order" do
+    it "On my profile orders order show page, I see all the required info for that order" do
       expect(page).to have_content(@order.id)
       expect(page).to have_content(@order.created_at)
       expect(page).to have_content(@order.updated_at)
@@ -32,14 +32,22 @@ describe "As a registered user" do
       expect(page).to have_content("Total: $#{@order.grandtotal}")
       
       within "#item-#{@tire.id}" do
-        
+        expect(page).to have_content(@tire.name)
+        expect(page).to have_content(@tire.description)
+        expect(page).to have_content(@item_order_1.quantity)
+        expect(page).to have_content(@tire.price)
+        expect(page).to have_content(@item_order_1.subtotal)
+        expect(page).to have_css("img[src*='#{@tire.image}']")
       end
       
       within "#item-#{@high_roller_ball.id}" do
-        
+        expect(page).to have_content(@high_roller_ball.name)
+        expect(page).to have_content(@high_roller_ball.description)
+        expect(page).to have_content(@item_order_2.quantity)
+        expect(page).to have_content(@high_roller_ball.price)
+        expect(page).to have_content(@item_order_2.subtotal)
+        expect(page).to have_css("img[src*='#{@high_roller_ball.image}']")
       end
-      
-      # - each item I ordered, including name, description, thumbnail, quantity, price and subtotal
     end
   end
 end

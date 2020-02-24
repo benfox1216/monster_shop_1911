@@ -6,11 +6,13 @@
 <h3>Total: $<%= @order.grandtotal %></h3>
 
 <% @order.items.each do |item| %>
-  <section id=item_order-<%= item_order.id %>>
+  <section id=item-<%= item.id %>>
     <p><%= item.name %></p>
     <p><%= item.description %></p>
-    <p><%=  %></p>
-    <p><%= item_order.name %></p>
-    <p><%= item_order.name %></p>
+    <p><%= item.item_order(@order.id) %></p>
+    <p><%= item.price %></p>
+    <p><%= item.item_order(@order.id).subtotal %></p>
+    <img src= <%= item.image %>>
+    <br>
   </section>
 <% end %>
