@@ -25,7 +25,7 @@ RSpec.describe "As a visitor" do
       expect(page).to_not have_content("Brian's Bike Shop")
     end
 
-    xit "I can't delete a merchant that has orders" do
+    it "I can't delete a merchant that has orders" do
       mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '123 Dog Rd.', city: 'Denver', state: 'CO', zip: 80204)
@@ -38,37 +38,14 @@ RSpec.describe "As a visitor" do
       user = create(:regular_user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit "/items/#{paper.id}"
-      click_on "Add To Cart"
-      visit "/items/#{paper.id}"
-      click_on "Add To Cart"
-      visit "/items/#{tire.id}"
-      click_on "Add To Cart"
-      visit "/items/#{pencil.id}"
-      click_on "Add To Cart"
-
-      visit "/cart"
-      click_on "Checkout"
-
-      name = "Bert"
-      address = "123 Sesame St."
-      city = "NYC"
-      state = "New York"
-      zip = 10001
-
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-      fill_in :zip, with: zip
-
-      click_button "Create Order"
+      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      item_order_1 = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
       
       visit "/merchants/#{meg.id}"
       expect(page).to_not have_link("Delete Merchant")
 
-      # visit "/merchants/#{brian.id}"
-      # expect(page).to have_link("Delete Merchant")
+      visit "/merchants/#{brian.id}"
+      expect(page).to have_link("Delete Merchant")
     end
   end
 end
