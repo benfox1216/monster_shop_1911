@@ -8,8 +8,14 @@ class UserOrdersController < ApplicationController
   end
   
   def update
-    ItemOrder.where(order_id: params[:order_id]).each do |item|
-      item.update(status: "unfulfilled")
+    ItemOrder.where(order_id: params[:order_id]).each do |item_order|
+      item_order.update(status: "unfulfilled")
+      item = item_order.item
+      item_order.item.update(inventory: item.inventory += item_order.quantity)
     end
+
+    order = Order.find(params[:order_id]).update(status: "cancelled")
+    redirect_to '/profile'
+    flash[:success] = "Your order has been cancelled"
   end
 end

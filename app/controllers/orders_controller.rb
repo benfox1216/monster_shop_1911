@@ -18,6 +18,7 @@ class OrdersController <ApplicationController
           quantity: quantity,
           price: item.price
           })
+        item.update(inventory: item.inventory - quantity)
       end
       session.delete(:cart)
       redirect_to "/profile/orders"

@@ -53,12 +53,28 @@ describe "As a registered user" do
     it "I'm able to cancel an order, where the required outcomes occur" do
       @item_order_1[:status] = "fulfilled"
       @item_order_2[:status] = "fulfilled"
+      
       click_link "Cancel Order"
+      @tire.reload
+      @high_roller_ball.reload
       @item_order_1.reload
       @item_order_2.reload
+      @order.reload
       
-      visit "/profile/orders/#{@order.id}"
       expect(@item_order_1[:status]).to eq("unfulfilled")
+      expect(@item_order_2[:status]).to eq("unfulfilled")
+      expect(@tire[:inventory]).to eq(14)
+      expect(@high_roller_ball[:inventory]).to eq(15)
+      expect(@order[:status]).to eq("cancelled")
+      
+      expect(current_path).to eq('/profile')
+      expect(page).to have_content("Your order has been cancelled")
+      
+      visit '/profile/orders'
+      
+      within "#order-#{@order.id}" do
+        expect(page).to have_content("cancelled")
+      end
     end
   end
 end
