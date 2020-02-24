@@ -6,11 +6,11 @@
 
 <% @user_orders.each do |order| %>
   <section id="order-<%= order.id %>">
-    <p>Order ID: <%= link_to order.id, "/orders/#{order.id}" %></p>
+    <p>Order ID: <%= link_to order.id, "/profile/orders/#{order.id}" %></p>
     <p>Created: <%= order.created_at %></p>
     <p>Updated: <%= order.updated_at %></p>
     <p>Status: <%= order.status %></p>
-    <p>Items: <%= order.items.count %></p>
+    <p>Items: <%= order.items_count %></p>
     <p>Total: $<%= order.grandtotal %></p>
   </section>
 <% end %>
