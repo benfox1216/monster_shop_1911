@@ -27,3 +27,5 @@ soft_disc = dog_shop.items.create(name: "Soft Disc", description: "Soft and dura
 huck_a_cone = dog_shop.items.create(name: "Huck-A_Cone", description: "Natural rubber", price: 10, image: "https://www.rei.com/media/71216e9a-fa1b-4dd0-a380-498ac5778894?size=784x588", inventory: 32, purchased: 7)
 pacific_loop = dog_shop.items.create(name: "Pacific Loop", description: "Wide set handles", price: 10, image: "https://www.rei.com/media/fc850ada-324b-49c3-b15b-348ae246165f?size=784x588", inventory: 32, purchased: 6)
 collapsible_thrower = dog_shop.items.create(name: "Collapsible Thrower", description: "Glows in the dark", price: 10, image: "https://www.rei.com/media/9ee5b433-dd30-4b29-923c-901e509e256b?size=784x588", inventory: 32, purchased: 4)
+# users 
+danny = User.create(name: "Danny Moron", address: "456 Uncool St", city: "Colorado Springs", state: "CO", zip_code: "54239", email_address: "uncannydanny@4realz.com", password: "sweetstreet")
