@@ -24,6 +24,7 @@
       <% if current_user %>
         <%= link_to "Logout", "/logout", method: :delete %>
         <%= link_to "Profile", "/profile"%>
+        <%= link_to "My Orders", "/profile/orders" if current_user.has_orders? %>
       <% else %>
         <%= link_to "Login", "/login"%>
         <%= link_to "Register", "/register"%>
