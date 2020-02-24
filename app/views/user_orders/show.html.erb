@@ -1,0 +1,16 @@
+<h1>Order: <%= @order.id %></h1>
+<h3>Created: <%= @order.created_at %></h3>
+<h3>Updated: <%= @order.updated_at %></h3>
+<h3>Status: <%= @order.status %></h3>
+<h3>Items in order: <%= @order.items_count %></h3>
+<h3>Total: $<%= @order.grandtotal %></h3>
+
+<% @order.items.each do |item| %>
+  <section id=item_order-<%= item_order.id %>>
+    <p><%= item.name %></p>
+    <p><%= item.description %></p>
+    <p><%=  %></p>
+    <p><%= item_order.name %></p>
+    <p><%= item_order.name %></p>
+  </section>
+<% end %>
