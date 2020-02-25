@@ -4,6 +4,10 @@ class Admin::MerchantsController < Admin::BaseController
    @merchants =  Merchant.all
   end
 
+  def show
+    @merchant = Merchant.find(params[:id])
+  end
+
   def update
     merchant = Merchant.find(params[:id])
     if merchant.enabled?
@@ -15,5 +19,4 @@ class Admin::MerchantsController < Admin::BaseController
     end
     redirect_to '/admin/merchants'
   end
-
 end

@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_secure_password
   enum role: %w(default admin merchant)
   has_many :orders
-  
+  validates :merchant, presence: true, if: :merchant?
+  belongs_to :merchant, optional: true
+
   def has_orders?
     !orders.empty?
   end

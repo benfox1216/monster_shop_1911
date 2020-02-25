@@ -1,0 +1,21 @@
+<h2><%= @merchant.name %></h2>
+<%= @merchant.address %>,<br>
+<%= @merchant.city %>,
+<%= @merchant.state %>
+<%= @merchant.zip %>
+
+<%= link_to "My Items", "/merchant/items" %>
+
+
+<% if !@orders.nil? %>
+  <h4>Orders Summary:</h4>
+    <% @orders.each do |order| %>
+      <section id="id-<%= order.id %>">
+        <p>Order name: <%= order.name %> </p>
+        <p>ID: <%= link_to order.id, "/merchant/orders/#{order.id}" %></p>
+        <p>Order placed: <%= order.created_at.to_formatted_s(:long) %></p>
+        <p>Number of items: <%= @item_orders_quantity[order.id] %></p>
+        <p>Total Price: <%= number_to_currency(@item_orders_price[order.id]) %></p>
+      </section>
+    <% end %>
+<% end %>

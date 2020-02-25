@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get '/login', to: 'login#new'
   post '/login', to: 'login#create'
   delete '/logout', to: 'login#empty'
-  
+
   #profile
   get "/profile", to: "users#show"
   get '/profile/edit', to:'users#edit'
@@ -60,17 +60,19 @@ Rails.application.routes.draw do
   #dashboards
   namespace :admin do
     get '/', to: 'dashboard#index'
-    resources :merchants, only: [:index, :update]
+    resources :merchants, only: [:index, :update, :show]
     # get 'merchants', to: 'merchants#index'
     # patch '/merchants/:id', to: 'merchants#update'
     get '/users/:user_id', to: 'user#show'
   end
-  
+
   namespace :user do
     get '/', to: 'dashboard#index'
   end
-  
+
   namespace :merchant do
     get '/', to: 'dashboard#index'
+    get '/items', to: 'items#show'
+    resources :orders, only: [:show]
   end
 end
