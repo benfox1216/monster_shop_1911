@@ -56,5 +56,4 @@ class ItemsController<ApplicationController
     params.permit(:name,:description,:price,:inventory,:image)
   end
 
-
 end
