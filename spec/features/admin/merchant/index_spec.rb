@@ -9,8 +9,6 @@ describe "As an admin" do
     @merchant_2 = create(:random_merchant)
     @item_1 = create(:random_item, merchant_id: @merchant_1.id)
     @item_2 = create(:random_item, merchant_id: @merchant_1.id)
-    # @item_3 = create(:random_item, merchant_id: @merchant_2.id)
-    # @item_4 = create(:random_item, merchant_id: @merchant_2.id)
     end 
 
     it "I am able to disable a merchant" do

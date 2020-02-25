@@ -120,10 +120,11 @@ RSpec.describe 'merchant index page', type: :feature do
     xit 'will not allow access to /merchant and /cart if admin' do
       visit login_path
 
-      user = create(:admin_user)
+      admin = create(:admin_user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-      fill_in :email, with: user.email_address
-      fill_in :password, with: user.password
+      fill_in :email, with: admin.email_address
+      fill_in :password, with: admin.password
 
       click_button "Login"
 
