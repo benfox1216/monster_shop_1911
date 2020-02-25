@@ -60,13 +60,15 @@ Rails.application.routes.draw do
   #dashboards
   namespace :admin do
     get '/', to: 'dashboard#index'
+    resources :merchants, only: [:index, :update]
+    # get 'merchants', to: 'merchants#index'
+    # patch '/merchants/:id', to: 'merchants#update'
     get '/users/:user_id', to: 'user#show'
     patch '/orders/:order_id', to: 'order#update'
   end
   
   namespace :user do
     get '/', to: 'dashboard#index'
-    # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible.
   end
   
   namespace :merchant do
