@@ -32,6 +32,7 @@ collapsible_thrower = dog_shop.items.create(name: "Collapsible Thrower", descrip
 
 #users
 user_1 = User.create!(name: "Jack", address: "123 Heart Pl", city: "Reno", state: "NV", zip_code: "19443", email_address: "mrcool@gmail.com", password: "rh23489")
+user_2 = User.create(name: "Danny Moron", address: "456 Uncool St", city: "Colorado Springs", state: "CO", zip_code: "54239", email_address: "uncannydanny@4realz.com", password: "sweetstreet")
 
 #orders
 order_1 = user_1.orders.create!(name: "Jack", address: "123 Heart Pl", city: "Reno", state: "NV", zip: "19443")
