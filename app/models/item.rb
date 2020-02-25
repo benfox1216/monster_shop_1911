@@ -24,16 +24,25 @@ class Item <ApplicationRecord
   def no_orders?
     item_orders.empty?
   end
-  
+
   def self.most_popular
     self.where(active?: true).order(purchased: :desc)
   end
-  
+
   def self.least_popular
     self.where(active?: true).order(:purchased)
   end
-  
+
   def item_order(order_id)
     item_orders.find_by(order_id: order_id, item_id: id)
   end
+
+  def activate
+    write_attribute(:active?, true)
+  end
+
+  def deactivate
+    write_attribute(:active?, false)
+  end
+
 end
