@@ -5,6 +5,7 @@
 <% @orders.each do |order| %>
   <section id="packaged-<%= order.id %>">
     <% if order.status == "packaged" %>
+      <p><%=link_to "Ship", "/admin/orders/#{order.id}", method: :patch %></p>
       <p>Order placed by: <%=link_to order.user.name, "/admin/users/#{order.user.id}"%></p>
       <p>Order ID: <%= order.id %></p>
       <p>Created: <%= order.created_at %></p>

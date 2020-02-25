@@ -5,9 +5,9 @@
     <section id="merchant-<%= merchant.id %>">
       <h2><%=link_to merchant.name, "/merchants/#{merchant.id}"%></h2>
       <% if merchant.enabled? %>
-        <h2><%= button_to 'Disable Merchant', "/admin/merchants/#{merchant.id}", method: :patch %></h2>
+        <h2><%= button_to 'Disable', "/admin/merchants/#{merchant.id}", method: :patch %></h2>
       <% else %>
-        <h2><%=button_to "Enable", admin_merchants_path%></h2>
+        <h2><%= button_to 'Enable', "/admin/merchants/#{merchant.id}", method: :patch %></h2>
       <% end %>
     </section>
   <% end %>
