@@ -9,7 +9,7 @@ describe User, type: :model do
     it { should validate_presence_of :email_address }
     it { should validate_uniqueness_of :email_address }
     it { should validate_presence_of :password }
-    it {should define_enum_for(:role).with_values([:regular_user, :merchant_user, :admin_user])}
+    it {should define_enum_for(:role).with_values([:default, :admin, :merchant])}
   end
 
   describe "relationships" do
