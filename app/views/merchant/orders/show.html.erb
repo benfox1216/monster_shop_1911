@@ -1,0 +1,21 @@
+<h1>Order ID: <%= @order.id %></h1>
+<h2><%= @order.user.name %></h2>
+<h3><%= @order.user.address %></h3>
+<h3><%= @order.user.city %></h3>
+<h3><%= @order.user.state %></h3>
+<h3><%= @order.user.zip_code %></h3>
+
+<h2>Items In Order:</h2>
+<% @order.items.each do |item| %>
+  <% if item.merchant.id == current_user.merchant_id %>
+    <section id="item-<%= item.id %>">
+      <p>Item: <%= item.name %></p>
+      <p>Price: <%= item.price %></p>
+      <p>Quantity: <%= item.item_order(@order.id).quantity %></p>
+      <% if item.item_order(@order.id).quantity <= item.inventory && item.item_order(@order.id).status != "fulfilled" %>
+        <p><%= link_to "Fulfill Item", "/merchant/item_orders/#{item.item_order(@order.id).id}", method: :patch %></p>
+      <% end %>
+      <p><img src= <%= item.image %>></p>
+    </section>
+  <% end %>
+<% end %>

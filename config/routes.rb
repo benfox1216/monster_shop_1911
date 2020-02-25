@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     # get 'merchants', to: 'merchants#index'
     # patch '/merchants/:id', to: 'merchants#update'
     get '/users/:user_id', to: 'user#show'
+    patch '/orders/:order_id', to: 'order#update'
   end
 
   namespace :user do
@@ -73,6 +74,7 @@ Rails.application.routes.draw do
   namespace :merchant do
     get '/', to: 'dashboard#index'
     get '/items', to: 'items#show'
+    patch '/item_orders/:item_order_id', to: 'item_order#update'
     resources :orders, only: [:show]
   end
 end

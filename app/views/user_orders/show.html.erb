@@ -4,7 +4,7 @@
 <h3>Status: <%= @order.status %></h3>
 <h3>Items in order: <%= @order.items_count %></h3>
 <h3>Total: $<%= @order.grandtotal %></h3>
-<h4><%= link_to "Cancel Order", "/profile/orders/#{@order.id}", method: :patch %></h4>
+<h4><%= link_to "Cancel Order", "/profile/orders/#{@order.id}", method: :patch if @order.status != "shipped" %></h4>
 
 <% @order.items.each do |item| %>
   <section id=item-<%= item.id %>>

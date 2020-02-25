@@ -12,4 +12,8 @@ class Order <ApplicationRecord
   def items_count
     items.count
   end
+  
+  def fulfilled?
+    !item_orders.pluck(:status).include?("unfulfilled")
+  end
 end
