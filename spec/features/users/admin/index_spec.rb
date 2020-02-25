@@ -48,6 +48,21 @@ describe "As an admin user" do
       within "#packaged-#{order_3.id}" do
         click_link("Ship")
       end
+      
+      expect(current_path).to eq("/admin")
+      
+      within "#packaged-#{order_3.id}" do
+        expect(page).to_not have_link(order_3.user.name)
+      end
+      
+      within "#shipped-#{order_3.id}" do
+        expect(page).to have_link(order_3.user.name)
+      end
+      
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      
+      visit "/profile/orders/#{order_3.id}"
+      expect(page).to_not have_content("Cancel Order")
     end
   end
 end

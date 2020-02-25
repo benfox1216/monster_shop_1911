@@ -54,11 +54,12 @@ RSpec.describe 'as a merchant user' do
 
   it 'should be able to view merchant dashboard as admin' do
     merchant = create(:random_merchant)
+    
     admin = create(:admin_user)
-    # require "pry"; binding.pry
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    
     visit '/merchants'
-# require "pry"; binding.pry
+    
     click_on merchant.name
     expect(current_path).to eq("/admin/merchants/#{merchant.id}")
   end
