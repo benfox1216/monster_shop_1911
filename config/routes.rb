@@ -77,5 +77,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:show]
     patch '/items/:item_id/activate', to: 'items#activate'
     patch '/items/:item_id/deactivate', to: 'items#deactivate'
+    delete '/items/:item_id', to: 'items#delete'
   end
 end
