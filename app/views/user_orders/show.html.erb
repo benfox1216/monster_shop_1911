@@ -4,13 +4,16 @@
 <h3>Status: <%= @order.status %></h3>
 <h3>Items in order: <%= @order.items_count %></h3>
 <h3>Total: $<%= @order.grandtotal %></h3>
+<h4><%= link_to "Cancel Order", "/profile/orders/#{@order.id}", method: :patch %></h4>
 
 <% @order.items.each do |item| %>
-  <section id=item_order-<%= item_order.id %>>
-    <p><%= item.name %></p>
-    <p><%= item.description %></p>
-    <p><%=  %></p>
-    <p><%= item_order.name %></p>
-    <p><%= item_order.name %></p>
+  <section id=item-<%= item.id %>>
+    <p>Name: <%= item.name %></p>
+    <p>Description: <%= item.description %></p>
+    <p>Quantity: <%= item.item_order(@order.id).quantity %></p>
+    <p>Price: <%= item.price %></p>
+    <p>Subtotal: <%= item.item_order(@order.id).subtotal %></p>
+    <img src= <%= item.image %>>
+    <br>
   </section>
 <% end %>
