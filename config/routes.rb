@@ -53,7 +53,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', to: 'dashboard#index'
+    resources :merchants, only: [:index, :show]
   end
+
   namespace :user do
     get '/', to: 'dashboard#index'
     # get '/profile', to: 'users#show' using line 45 to avoid creating another controller if possible.
@@ -61,6 +63,7 @@ Rails.application.routes.draw do
   end
   namespace :merchant do
     get '/', to: 'dashboard#index'
+    get '/items', to: 'items#show'
     resources :orders, only: [:show]
   end
 end

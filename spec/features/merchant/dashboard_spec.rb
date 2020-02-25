@@ -41,4 +41,26 @@ RSpec.describe 'as a merchant user' do
     end
   end
 
+  it 'should be able to view items index page from dashboard' do
+    item_1 = create(:random_item, merchant: @user.merchant)
+    item_2 = create(:random_item, merchant: @user.merchant)
+    item_3 = create(:random_item, merchant: @user.merchant)
+
+    visit '/merchant'
+
+    click_link("My Items")
+    expect(current_path).to eq("/merchant/items")
+  end
+
+  it 'should be able to view merchant dashboard as admin' do
+    merchant = create(:random_merchant)
+    admin = create(:admin_user)
+    require "pry"; binding.pry
+
+    visit '/merchants'
+# require "pry"; binding.pry
+    click_on merchant.name
+    expect(current_path).to eq("/admin/merchants/#{merchant.id}")
+  end
+
 end
