@@ -11,7 +11,7 @@ class Merchant::ItemsController < Merchant::BaseController
       flash[:success] = "#{item.name} successfully activated."
       redirect_to '/merchant/items'
     else
-      flash[:error] = "#{item.name} was not able to be activated"
+      flash[:error] = "#{item.name} was not able to be activated."
       redirect_to '/merchant/items'
     end
   end
@@ -23,7 +23,7 @@ class Merchant::ItemsController < Merchant::BaseController
       flash[:success] = "#{item.name} successfully deactivated."
       redirect_to '/merchant/items'
     else
-      flash[:error] = "#{item.name} was not able to be deactivated"
+      flash[:error] = "#{item.name} was not able to be deactivated."
       redirect_to '/merchant/items'
     end
   end
@@ -32,7 +32,7 @@ class Merchant::ItemsController < Merchant::BaseController
     item = Item.find(params[:id])
     Review.where(item_id: item.id).destroy_all
     item.destroy
-    flash[:notice] = "#{item.name} has been removed from items"
+    flash[:notice] = "#{item.name} has been deleted."
     redirect_to "/merchant/items"
   end
 end
