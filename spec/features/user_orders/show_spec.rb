@@ -76,5 +76,12 @@ describe "As a registered user" do
         expect(page).to have_content("cancelled")
       end
     end
+    
+    xit "When all items are fulfilled, the order status becomes packaged" do
+      expect(@order[:status]).to eq("pending")
+      @item_order_1[:status] = "fulfilled"
+      @item_order_2[:status] = "fulfilled"
+      expect(@order[:status]).to eq("packaged")
+    end
   end
 end

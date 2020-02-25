@@ -1,0 +1,7 @@
+<h1>Admin Dashboard</h1>
+<h2>Orders:</h2>
+
+<% @orders.each do |order| %>
+<% binding.pry %>
+  <p>Order placed by: <%= order.user.name %></p>
+<% end %>
