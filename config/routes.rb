@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   #dashboards
   namespace :admin do
     get '/', to: 'dashboard#index'
+    get '/users/:user_id', to: 'user#show'
   end
   
   namespace :user do
