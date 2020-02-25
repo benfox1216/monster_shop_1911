@@ -1,7 +1,7 @@
 <% @items.each do |item| %>
   <section id="item-<%= item.id %>">
-    <%= item.image %>
     <h3><%= item.name %></h3>
+    <%= item.image %><br>
     Description: <%= item.description %><br>
     Active?: <%= item.active? %><br>
     Inventory: <%= item.inventory %><br>

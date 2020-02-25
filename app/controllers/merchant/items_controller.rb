@@ -8,10 +8,10 @@ class Merchant::ItemsController < Merchant::BaseController
     item = Item.find(params[:item_id])
     item.activate
     if item.save
-      flash[:success] = "Item successfully activated."
+      flash[:success] = "#{item.name} successfully activated."
       redirect_to '/merchant/items'
     else
-      flash[:error] = "Item was not able to be activated"
+      flash[:error] = "#{item.name} was not able to be activated"
       redirect_to '/merchant/items'
     end
   end
@@ -20,10 +20,10 @@ class Merchant::ItemsController < Merchant::BaseController
     item = Item.find(params[:item_id])
     item.deactivate
     if item.save
-      flash[:success] = "Item successfully deactivated."
+      flash[:success] = "#{item.name} successfully deactivated."
       redirect_to '/merchant/items'
     else
-      flash[:error] = "Item was not able to be deactivated"
+      flash[:error] = "#{item.name} was not able to be deactivated"
       redirect_to '/merchant/items'
     end
   end
