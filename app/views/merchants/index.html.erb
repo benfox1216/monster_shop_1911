@@ -6,7 +6,7 @@
 
     <section class = "grid-item">
 
-      <% if current_admin? == true %>
+      <% if current_admin? %>
         <h2><%= link_to merchant.name, "/admin/merchants/#{merchant.id}" %></h2>
       <% else %>
         <h2><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h2>
