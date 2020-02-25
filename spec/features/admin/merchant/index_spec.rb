@@ -129,11 +129,3 @@ describe "As an admin" do
     end 
   end
 end
-
-
-# As an admin
-# When I visit the merchant index page
-# I see an "enable" button next to any merchants whose accounts are disabled
-# When I click on the "enable" button
-# I am returned to the admin's merchant index page where I see that the merchant's account is now enabled
-# And I see a flash message that the merchant's account is now enabled

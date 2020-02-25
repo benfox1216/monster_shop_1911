@@ -44,7 +44,7 @@ describe Merchant, type: :model do
       expect(@meg.average_item_price).to eq(70)
     end
 
-    xit 'distinct_cities' do
+   it 'distinct_cities' do
       chain = @meg.items.create(name: "Chain", description: "It'll never break!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 22)
       order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
       order_2 = @user.orders.create!(name: 'Brian', address: '123 Brian Ave', city: 'Denver', state: 'CO', zip: 17033)
@@ -56,5 +56,30 @@ describe Merchant, type: :model do
       expect(@meg.distinct_cities).to eq(["Denver","Hershey"])
     end
 
+    it ".deactivate_items" do
+      merchant_3 = create(:random_merchant, status: 0)
+      item_5 = create(:random_item, active?: false, merchant_id: merchant_3.id)
+      
+      expect(item_5.active?).to eq(false)
+
+      merchant_3.activate_items
+
+      item_5.reload
+
+      expect(item_5.active?).to eq(true)
+    end
+
+    it ".activate_items" do
+      merchant_3 = create(:random_merchant, status: 1)
+      item_5 = create(:random_item, merchant_id: merchant_3.id)
+      
+      expect(item_5.active?).to eq(true)
+
+      merchant_3.deactivate_items
+
+      item_5.reload
+
+      expect(item_5.active?).to eq(false)
+    end
   end
 end
