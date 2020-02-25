@@ -39,8 +39,15 @@ describe "As an admin user" do
       end
     end
     
-    it "text" do
+    it "I can ship any order that have the status of packages" do
+      order_3 = @user.orders.create!(name: "Jack", address: "123 Heart Pl", city: "Reno", state: "NV", zip: "19443", status: "packaged")
+      item_order_3 = ItemOrder.create!(item_id: @item_2.id, order_id: order_3.id, price: @item_2.price, quantity: 3)
       
+      visit '/admin'
+      
+      within "#packaged-#{order_3.id}" do
+        click_link("Ship")
+      end
     end
   end
 end
