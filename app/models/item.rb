@@ -32,4 +32,8 @@ class Item <ApplicationRecord
   def self.least_popular
     self.where(active?: true).order(:purchased)
   end
+  
+  def item_order(order_id)
+    item_orders.find_by(order_id: order_id, item_id: id)
+  end
 end
