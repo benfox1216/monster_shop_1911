@@ -1,0 +1,13 @@
+<% @items.each do |item| %>
+  <section id="id-<%= item.id %>">
+    <%= item.image %>
+    <h3><%= item.name %></h3>
+    Description: <%= item.description %>
+    Status: <%= item.active? %>
+    Inventory: <%= item.inventory %>
+    <% if item.status? %>
+      <%= link_to "" %>
+    <% else %>
+      <%= link_to "" %>
+    <% end %>
+  </section>
