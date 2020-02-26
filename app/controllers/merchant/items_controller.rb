@@ -43,29 +43,21 @@ class Merchant::ItemsController < Merchant::BaseController
   def activate
     item = Item.find(params[:item_id])
     item.activate
-    if item.save
-      flash[:success] = "#{item.name} successfully activated."
-      redirect_to '/merchant/items'
-    else
-      flash[:error] = "#{item.name} was not able to be activated."
-      redirect_to '/merchant/items'
-    end
+    item.save
+    redirect_to '/merchant/items'
+    flash[:success] = "#{item.name} is now available for sale."
   end
 
   def deactivate
     item = Item.find(params[:item_id])
     item.deactivate
-    if item.save
-      flash[:success] = "#{item.name} successfully deactivated."
-      redirect_to '/merchant/items'
-    else
-      flash[:error] = "#{item.name} was not able to be deactivated."
-      redirect_to '/merchant/items'
-    end
+    item.save
+    redirect_to '/merchant/items'
+    flash[:success] = "#{item.name} is no longer available for sale."
   end
 
   def delete
-    item = Item.find(params[:id])
+    item = Item.find(params[:item_id])
     Review.where(item_id: item.id).destroy_all
     item.destroy
     flash[:notice] = "#{item.name} has been deleted."
