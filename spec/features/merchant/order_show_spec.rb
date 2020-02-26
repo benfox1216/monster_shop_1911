@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe "As a merchant", type: :feature do
   describe "when I visit an order show page from my dashboard" do
     before :each do
@@ -42,6 +44,54 @@ describe "As a merchant", type: :feature do
       end
       
       expect(current_path).to eq("/items/#{@item_2.id}")
+    end
+    
+    it "I can fulfill items I have in inventory" do
+      visit "/merchant/orders/#{@order.id}"
+      
+      within "#item-#{@item_1.id}" do
+        expect(page).to have_link("Fulfill Item")
+      end
+      
+      within "#item-#{@item_2.id}" do
+        expect(page).to have_link("Fulfill Item")
+      end
+      
+      @item_1.update(inventory: 1)
+      visit "/merchant/orders/#{@order.id}"
+      
+      within "#item-#{@item_1.id}" do
+        expect(page).to_not have_link("Fulfill Item")
+      end
+      
+      @item_1.update(inventory: 10)
+      visit "/merchant/orders/#{@order.id}"
+      
+      within "#item-#{@item_1.id}" do
+        expect(page).to have_link("Fulfill Item")
+      end
+      
+      @item_order_1.update(status: "fulfilled")
+      visit "/merchant/orders/#{@order.id}"
+      
+      within "#item-#{@item_1.id}" do
+        expect(page).to_not have_link("Fulfill Item")
+        expect(page).to have_content("This item has been fulfilled")
+      end
+      
+      @item_order_1.update(status: "unfulfilled")
+      visit "/merchant/orders/#{@order.id}"
+      
+      within "#item-#{@item_1.id}" do
+        click_link "Fulfill Item"
+      end
+      
+      @item_1.reload
+      
+      expect(current_path).to eq("/merchant/orders/#{@order.id}")
+      
+      expect(page).to have_content("You have fulfilled the order for #{@item_1.name}")
+      expect(@item_1.inventory).to eq(8)
     end
   end
 end

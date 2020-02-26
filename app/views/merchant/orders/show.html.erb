@@ -14,6 +14,8 @@
       <p>Quantity: <%= item.item_order(@order.id).quantity %></p>
       <% if item.item_order(@order.id).quantity <= item.inventory && item.item_order(@order.id).status != "fulfilled" %>
         <p><%= link_to "Fulfill Item", "/merchant/item_orders/#{item.item_order(@order.id).id}", method: :patch %></p>
+      <% elsif item.item_order(@order.id).status == "fulfilled" %>
+        <p>This item has been fulfilled.</p>
       <% end %>
       <p><img src= <%= item.image %>></p>
     </section>
