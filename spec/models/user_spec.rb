@@ -16,4 +16,16 @@ describe User, type: :model do
     it {should have_many :orders}
     it {should belong_to(:merchant).optional}
   end
+  
+  describe "methods" do
+    before :each do
+      @user = create(:regular_user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      @order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+    end
+    
+    it "#has_orders?" do
+      expect(@user.has_orders?).to eq(true)
+    end
+  end
 end
