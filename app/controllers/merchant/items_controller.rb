@@ -29,9 +29,15 @@ class Merchant::ItemsController < Merchant::BaseController
     @item = Item.find(params[:item_id])
     @merchant = current_user.merchant
 
-    @item.update(user_params)
-    redirect_to "/merchant/items"
-    flash[:success] = "You have successfully updated #{@item.name}'s information."
+    @item.update(item_params)
+
+    if @item.save
+      flash[:success] = "You have successfully updated #{@item.name}'s information."
+      redirect_to "/merchant/items"
+    else
+      flash[:error] = "You must complete all required fields before your item will be updated."
+      redirect_to "/merchant/items/#{@item.id}/edit"
+    end
   end
 
   def activate

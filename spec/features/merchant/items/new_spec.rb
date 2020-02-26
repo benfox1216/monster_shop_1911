@@ -27,9 +27,8 @@ RSpec.describe 'merchant item show page', type: :feature do
     fill_in :image, with: image
     fill_in :price, with: price
     fill_in :inventory, with: inventory
-    # require "pry"; binding.pry
+
     click_button("Create Item")
-    save_and_open_page
 
     new_item = Item.last
 
