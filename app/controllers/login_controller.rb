@@ -1,5 +1,4 @@
-class LoginController <ApplicationController
-
+class LoginController < ApplicationController
   def new
     if current_user
       redirect_to '/'
@@ -8,8 +7,8 @@ class LoginController <ApplicationController
   end
 
   def create
-    user = User.find_by(email_address: params[:email])
-    if user.authenticate(params[:password])
+    user = User.find_by(email_address: user_params[:email])
+    if user.authenticate(user_params[:password])
       if user.default?
         redirect_to user_path
       elsif user.merchant?

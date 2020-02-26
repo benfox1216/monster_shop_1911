@@ -38,6 +38,8 @@ describe "As a merchant", type: :feature do
         click_button ("Delete")
       end
       
+      expect(page).to have_content("#{@item_4.name} has been deleted.")
+      
       expect(page).to_not have_css("#item-#{@item_4.id}")
     end
 
@@ -62,6 +64,8 @@ describe "As a merchant", type: :feature do
         expect(page).to have_content(@item_3.inventory)
         click_button("Deactivate")
       end
+      
+      expect(page).to have_content("#{@item_3.name} is no longer available for sale.")
 
       within "#item-#{@item_1.id}" do
         expect(page).to have_button("Activate")
@@ -78,6 +82,8 @@ describe "As a merchant", type: :feature do
       within "#item-#{@item_3.id}" do
         click_button "Activate"
       end
+      
+      expect(page).to have_content("#{@item_3.name} is now available for sale.")
       
       within "#item-#{@item_3.id}" do
         expect(@item_3.active?).to eq(true)
