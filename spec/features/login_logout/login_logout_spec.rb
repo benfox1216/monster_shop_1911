@@ -28,7 +28,7 @@ describe "When I login, I am redirected to my designated page" do
 
       click_button "Login"
 
-      expect(current_path).to eq(merchant_path)
+      expect(current_path).to eq('/merchant')
       expect(page).to have_content("#{merchant.name}, you are now logged in!")
     end
   end
