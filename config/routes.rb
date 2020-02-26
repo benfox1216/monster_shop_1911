@@ -81,6 +81,10 @@ Rails.application.routes.draw do
   namespace :merchant do
     get '/', to: 'dashboard#index'
     get '/items', to: 'items#show'
+    get '/items/new', to: 'items#new'
+    get '/items/:item_id/edit', to: 'items#edit'
+    patch '/items/:item_id', to: 'items#update'
+    post '/items', to: 'items#create'
     patch '/item_orders/:item_order_id', to: 'item_order#update'
     resources :orders, only: [:show]
     patch '/items/:item_id/activate', to: 'items#activate'

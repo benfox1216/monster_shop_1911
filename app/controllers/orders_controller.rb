@@ -1,7 +1,5 @@
 class OrdersController <ApplicationController
-
   def new
-
   end
 
   def show
@@ -27,7 +25,6 @@ class OrdersController <ApplicationController
       render :new
     end
   end
-
 
   private
 
