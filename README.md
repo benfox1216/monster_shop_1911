@@ -29,6 +29,9 @@ Create a new [heroku](https://id.heroku.com/login) app and connect to your local
 
 Deploy Monster Shop from heroku.
 
+## Schema Design
+![alt text](/app/assets/images/Monster Shop Schema Design.png)
+
 ## Contributors
 
 [Ezekiel Clark](https://github.com/Yetidancer)
@@ -36,7 +39,6 @@ Deploy Monster Shop from heroku.
 [Ben Fox](https://github.com/benfox1216)
 
 [Daniel Moran](https://github.com/danmoran-pro)
-
 
 ## Learning Goals
 
