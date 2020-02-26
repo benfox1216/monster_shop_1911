@@ -29,7 +29,7 @@ class Merchant::ItemsController < Merchant::BaseController
   end
 
   def delete
-    item = Item.find(params[:id])
+    item = Item.find(params[:item_id])
     Review.where(item_id: item.id).destroy_all
     item.destroy
     flash[:notice] = "#{item.name} has been deleted."
