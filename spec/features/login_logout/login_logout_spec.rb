@@ -27,8 +27,8 @@ describe "When I login, I am redirected to my designated page" do
       fill_in :password, with: merchant.password
 
       click_button "Login"
-
-      expect(current_path).to eq(merchant_path)
+save_and_open_page
+      expect(current_path).to eq('/merchant')
       expect(page).to have_content("#{merchant.name}, you are now logged in!")
     end
   end

@@ -13,7 +13,7 @@ class LoginController <ApplicationController
       if user.default?
         redirect_to user_path
       elsif user.merchant?
-        redirect_to merchant_path
+        redirect_to '/merchant'
       elsif user.admin?
         redirect_to admin_path
       end
