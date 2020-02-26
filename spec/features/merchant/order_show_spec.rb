@@ -93,5 +93,22 @@ describe "As a merchant", type: :feature do
       expect(page).to have_content("You have fulfilled the order for #{@item_1.name}")
       expect(@item_1.inventory).to eq(8)
     end
+    
+    it "I cannot fulfill an item if I don't have the inventory" do
+      @item_1.update(inventory: 2)
+      visit "/merchant/orders/#{@order.id}"
+      
+      within "#item-#{@item_1.id}" do
+        expect(page).to have_link("Fulfill Item")
+      end
+      
+      @item_1.update(inventory: 1)
+      visit "/merchant/orders/#{@order.id}"
+      
+      within "#item-#{@item_1.id}" do
+        expect(page).to_not have_link("Fulfill Item")
+        expect(page).to have_content("You cannot fulfill this item due to lack of inventory")
+      end
+    end
   end
 end
