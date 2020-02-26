@@ -127,5 +127,32 @@ describe "As an admin" do
       expect(page).to have_content(item_6.name)
       expect(page).to have_css("img[src*='#{item_6.image}']")
     end 
+
+    it "see all the Merchant's information" do
+      merchant_3 = create(:random_merchant, status: 1)
+
+      visit '/admin/merchants'
+        
+      within "#merchant-#{@merchant_1.id}" do
+        expect(page).to have_link(@merchant_1.name) 
+        expect(page).to have_content(@merchant_1.city) 
+        expect(page).to have_content(@merchant_1.state) 
+        expect(page).to have_button('Disable') 
+      end 
+      
+      within "#merchant-#{@merchant_2.id}" do
+        expect(page).to have_link(@merchant_2.name) 
+        expect(page).to have_content(@merchant_2.city) 
+        expect(page).to have_content(@merchant_2.state) 
+        expect(page).to have_button('Disable') 
+      end 
+      within "#merchant-#{merchant_3.id}" do
+        expect(page).to have_link(merchant_3.name) 
+        expect(page).to have_content(merchant_3.city) 
+        expect(page).to have_content(merchant_3.state) 
+        expect(page).to_not have_button('Disable') 
+        expect(page).to have_button('Enable') 
+      end 
+    end 
   end
 end
