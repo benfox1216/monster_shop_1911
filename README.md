@@ -30,7 +30,7 @@ Create a new [heroku](https://id.heroku.com/login) app and connect to your local
 Deploy Monster Shop from heroku.
 
 ## Schema Design
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/bYI2svd"><a href="//imgur.com/a/bYI2svd"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+![Image of Schema Design](https://i.imgur.com/32jB4Lz.png)
 
 ## Contributors
 
