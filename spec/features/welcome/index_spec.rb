@@ -117,16 +117,9 @@ RSpec.describe 'merchant index page', type: :feature do
 
     end
 
-    xit 'will not allow access to /merchant and /cart if admin' do
-      visit login_path
-
+    it 'will not allow access to /merchant and /cart if admin' do
       admin = create(:admin_user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
-      fill_in :email, with: admin.email_address
-      fill_in :password, with: admin.password
-
-      click_button "Login"
 
       visit '/merchant'
       expect(page).to have_content("The page you were looking for doesn't exist")
