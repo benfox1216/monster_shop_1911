@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 20200225014325) do
     t.string "zip_code"
     t.string "email_address"
     t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "role", default: 0
     t.bigint "merchant_id"
     t.index ["merchant_id"], name: "index_users_on_merchant_id"
