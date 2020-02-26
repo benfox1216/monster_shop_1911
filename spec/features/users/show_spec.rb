@@ -28,10 +28,6 @@ describe "As a registered user" do
       click_link "My Orders"
       expect(current_path).to eq("/profile/orders")
     end
-    
-    it "text" do
-      
-    end
   end
 end
 
