@@ -20,6 +20,20 @@ class Merchant::ItemsController < Merchant::BaseController
     end
   end
 
+  def edit
+    @item = Item.find(params[:item_id])
+    @merchant = current_user.merchant
+  end
+
+  def update
+    @item = Item.find(params[:item_id])
+    @merchant = current_user.merchant
+
+    @item.update(user_params)
+    redirect_to "/merchant/items"
+    flash[:success] = "You have successfully updated #{@item.name}'s information."
+  end
+
   def activate
     item = Item.find(params[:item_id])
     item.activate
