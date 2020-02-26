@@ -1,3 +1,4 @@
+ItemOrder.destroy_all
 Order.destroy_all
 Item.destroy_all
 Review.destroy_all
@@ -24,11 +25,10 @@ huck_a_cone = dog_shop.items.create!(name: "Huck-A_Cone", description: "Natural 
 pacific_loop = dog_shop.items.create!(name: "Pacific Loop", description: "Wide set handles", price: 10, image: "https://www.rei.com/media/fc850ada-324b-49c3-b15b-348ae246165f?size=784x588", inventory: 32, purchased: 6)
 collapsible_thrower = dog_shop.items.create!(name: "Collapsible Thrower", description: "Glows in the dark", price: 10, image: "https://www.rei.com/media/9ee5b433-dd30-4b29-923c-901e509e256b?size=784x588", inventory: 32, purchased: 4)
 
-#leggo shop 
+#leggo shop
 batmobile = leggos.items.create(name: "1989 Batmobile", description: "Original Battmovile", price: 30, image: 'https://www.bigw.com.au/medias/sys_master/images/images/h1f/h87/13909151023134.jpg', inventory: 1, purchased: 4)
 olaf = leggos.items.create(name: "Olaf", description: "The snowman that can talk", price: 15, image: 'https://www.thebrickfan.com/wp-content/uploads/2019/10/Olafs-Traveling-Sleigh-40361.jpg', inventory: 20, purchased: 6)
 baby_yoda = leggos.items.create(name: "Baby Yoda", description: "Baby Yoda", price: 1000000000, image: 'https://www.htxt.co.za/wp-content/uploads/2020/02/75317-The-Mandalorian-The-Child-H-LEGO.png', inventory: 1, purchased: 0)
-
 
 #users
 user_1 = User.create!(name: "Benji Wolf", address: "123 Heart Pl", city: "Reno", state: "NV", zip_code: "19443", email_address: "mrcool@gmail.com", password: "rh23489", role: 0)
