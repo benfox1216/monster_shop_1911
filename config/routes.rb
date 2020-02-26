@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   # delete "/merchants/:id", to: "merchants#destroy"
 
   #items
-  resources :items, except: [:new, :create]
+  resources :items, except: [:new, :create] do 
+    resources :reviews, only: [:new, :create]
+  end 
 
   # get "/items", to: "items#index"
   # get "/items/:id", to: "items#show"
@@ -27,11 +29,12 @@ Rails.application.routes.draw do
   # delete "/items/:id", to: "items#destroy"
 
   #reviews
-  get "/items/:item_id/reviews/new", to: "reviews#new"
-  post "/items/:item_id/reviews", to: "reviews#create"
-  get "/reviews/:id/edit", to: "reviews#edit"
-  patch "/reviews/:id", to: "reviews#update"
-  delete "/reviews/:id", to: "reviews#destroy"
+  # get "/items/:item_id/reviews/new", to: "reviews#new"
+  # post "/items/:item_id/reviews", to: "reviews#create"
+  resources :reviews, only: [:edit, :update, :destroy]
+  # get "/reviews/:id/edit", to: "reviews#edit"
+  # patch "/reviews/:id", to: "reviews#update"
+  # delete "/reviews/:id", to: "reviews#destroy"
 
   #cart
   post "/cart/:item_id", to: "cart#add_item"
