@@ -22,8 +22,6 @@ RSpec.describe 'merchant item show page', type: :feature do
 
     expect(find_field('Name').value).to eq @item_1.name
     expect(find_field('Description').value).to eq @item_1.description
-    # save_and_open_page
-    # require "pry"; binding.pry
     expect(find_field('Price').value).to eq @item_1.price.to_s
     expect(find_field('Image').value).to eq @item_1.image
     expect(find_field('Inventory').value).to eq @item_1.inventory.to_s

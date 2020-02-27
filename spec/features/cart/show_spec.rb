@@ -55,11 +55,11 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
-      
+
       it "I can increment the number of a single item, but not beyond the inventory" do
         @pencil.inventory = 3
         visit '/cart'
-        
+
         within "#cart-item-#{@pencil.id}" do
           expect(page).to have_content("1")
           click_link "+"
@@ -68,30 +68,32 @@ RSpec.describe 'Cart show' do
           expect(page).to have_content("2")
         end
       end
-      
+
       it "I can decrement the number of a single item, and at 0 it's removed from my cart" do
         visit "/items/#{@pencil.id}"
         click_on "Add To Cart"
         visit '/cart'
-        
+
         within "#cart-item-#{@pencil.id}" do
           expect(page).to have_content("2")
           click_link "-"
           expect(page).to have_content("1")
           click_link "-"
         end
-        
+
         expect(page).to_not have_content("#{@pencil.name}")
       end
-      
+
       it "I cannot checkout if I am not registered/logged in" do
         visit '/cart'
-        expect(page).to have_content("Please register or log in to checkout")
+        expect(page).to have_content("Please Register or Login to checkout")
+        expect(page).to have_link("Register")
+        expect(page).to have_link("Login")
         expect(page).to_not have_link("Checkout")
       end
     end
   end
-  
+
   describe "When I haven't added anything to my cart" do
     describe "and visit my cart show page" do
       it "I see a message saying my cart is empty" do

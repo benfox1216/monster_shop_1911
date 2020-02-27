@@ -16,20 +16,20 @@ RSpec.describe "Items Index Page" do
       @pacific_loop = @brian.items.create(name: "Pacific Loop", description: "Wide set handles", price: 10, image: "https://www.rei.com/media/fc850ada-324b-49c3-b15b-348ae246165f?size=784x588", inventory: 32, purchased: 9)
       @hydro_plane = @meg.items.create(name: "Hydro Plane", description: "Maintains shape", price: 100, image: "https://www.rei.com/media/be369a77-4a9b-426a-b67a-12649856fb9c?size=784x588", inventory: 12, purchased: 7)
       @collapsible_thrower = @brian.items.create(name: "Collapsible Thrower", description: "Glows in the dark", price: 10, image: "https://www.rei.com/media/9ee5b433-dd30-4b29-923c-901e509e256b?size=784x588", inventory: 32, purchased: 6)
-      
+
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21, purchased: 4)
     end
 
     it "all items, merchant names, and images are links" do
       visit '/items'
-      
+
       within ".grid-container" do
         expect(page).to have_link(@tire.name)
         expect(page).to have_link(@tire.merchant.name)
         expect(page).to have_link(@pull_toy.name)
         expect(page).to have_link(@pull_toy.merchant.name)
         expect(page).to_not have_link(@dog_bone.name)
-        
+
         click_link("img-#{@tire.id}")
       end
       expect(current_path).to eq("/items/#{@tire.id}")
@@ -61,7 +61,7 @@ RSpec.describe "Items Index Page" do
 
       expect(page).to_not have_field("#item-#{@dog_bone.id}")
     end
-    
+
     it "There are statistics at the top of the page" do
       visit '/items'
 
@@ -72,6 +72,11 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_link(@high_roller_ball.name)
         expect(page).to have_link(@soft_disc.name)
         expect(page).to have_link(@gnawt_a_rock.name)
+        expect(page).to have_content(@tire.purchased)
+        expect(page).to have_content(@pull_toy.purchased)
+        expect(page).to have_content(@high_roller_ball.purchased)
+        expect(page).to have_content(@soft_disc.purchased)
+        expect(page).to have_content(@gnawt_a_rock.purchased)
       end
 
       within "#least_popular" do
@@ -81,6 +86,11 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_link(@pacific_loop.name)
         expect(page).to have_link(@hydro_plane.name)
         expect(page).to have_link(@collapsible_thrower.name)
+        expect(page).to have_content(@huck_a_cone.purchased)
+        expect(page).to have_content(@gnawt_a_stick.purchased)
+        expect(page).to have_content(@pacific_loop.purchased)
+        expect(page).to have_content(@hydro_plane.purchased)
+        expect(page).to have_content(@collapsible_thrower.purchased)
       end
     end
   end

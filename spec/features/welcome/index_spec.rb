@@ -53,6 +53,7 @@ RSpec.describe 'merchant index page', type: :feature do
       expect(page).to have_link("Logout")
       expect(page).to have_link("Admin Dashboard")
       expect(page).to have_link("All Users")
+      expect(page).to_not have_content("Cart")
     end
 
     it 'cannot see merchant dashboard if not merchant' do

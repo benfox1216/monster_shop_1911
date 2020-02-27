@@ -2,165 +2,165 @@ require 'rails_helper'
 
 describe "As a registered user" do
   describe "When I visit my profile page, I see a link to edit my profile data" do
-    before(:each) do 
+    before(:each) do
       @user = create(:regular_user)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user) 
-    end 
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    end
 
     it "clicking on the link takes me to an edit form" do
       visit profile_path
 
-      click_link("Edit Profile")  
+      click_link("Edit Profile")
       expect(current_path).to eq(profile_edit_path)
     end
 
     it "Can edit profile " do
       visit profile_path
 
-      click_link("Edit Profile")  
+      click_link("Edit Profile")
 
       fill_in :name, with: "keyboard"
-      
+
       click_on "Submit"
-      
+
       expect(current_path).to eq(profile_path)
       expect(page).to have_content("keyboard")
       expect(page).to have_content("You have updated your profle!")
-    end 
+    end
 
     it "Can edit password " do
       visit profile_path
-      click_link("Edit My Password") 
+      click_link("Edit My Password")
       expect(current_path).to eq(password_edit_path)
-      
+
       fill_in :password, with: "new pass"
       fill_in :confirm_password, with: "new pass"
-      
+
       click_on("Update Password")
-      
+
       expect(current_path).to eq(profile_path)
       expect(page).to have_content("Your password has been updated.")
-    end 
-  end 
+    end
+  end
 
-  describe "As merchant user" do      
+  describe "As merchant user" do
     describe "When I visit my profile page, I see a link to edit my profile data" do
-      before(:each) do 
+      before(:each) do
         merchant = create(:merchant_user)
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant) 
-      end 
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+      end
 
       it "clicking on the link takes me to an edit form" do
         visit profile_path
 
-        click_link("Edit Profile")  
+        click_link("Edit Profile")
         expect(current_path).to eq(profile_edit_path)
       end
 
       it "Can edit profile " do
         visit profile_path
 
-        click_link("Edit Profile")  
+        click_link("Edit Profile")
 
         fill_in :name, with: "keyboard"
-        
+
         click_on "Submit"
-        
+
         expect(current_path).to eq(profile_path)
         expect(page).to have_content("keyboard")
         expect(page).to have_content("You have updated your profle!")
-      end 
+      end
 
       it "Can edit password " do
         visit profile_path
-        click_link("Edit My Password") 
+        click_link("Edit My Password")
         expect(current_path).to eq(password_edit_path)
-        
+
         fill_in :password, with: "new pass"
         fill_in :confirm_password, with: "new pass"
-        
+
         click_on("Update Password")
-        
+
         expect(current_path).to eq(profile_path)
         expect(page).to have_content("Your password has been updated.")
       end
-    end 
-  end  
+    end
+  end
 
-  describe "As an Admin user" do      
+  describe "As an Admin user" do
     describe "When I visit my profile page, I see a link to edit my profile data" do
-      before(:each) do 
+      before(:each) do
         @admin = create(:admin_user)
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin) 
-      end 
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+      end
 
       it "clicking on the link takes me to an edit form" do
         admin = create(:admin_user)
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin) 
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
         visit profile_path
 
-        click_link("Edit Profile")  
+        click_link("Edit Profile")
         expect(current_path).to eq(profile_edit_path)
       end
 
       it "Can edit profile " do
         visit profile_path
 
-        click_link("Edit Profile")  
+        click_link("Edit Profile")
 
         fill_in :name, with: "keyboard"
-        
+
         click_on "Submit"
-        
+
         expect(current_path).to eq(profile_path)
         expect(page).to have_content("keyboard")
         expect(page).to have_content("You have updated your profle!")
-      end 
+      end
 
       it "Can edit password " do
         visit profile_path
-        click_link("Edit My Password") 
+        click_link("Edit My Password")
         expect(current_path).to eq(password_edit_path)
-        
+
         fill_in :password, with: "new pass"
         fill_in :confirm_password, with: "new pass"
-        
+
         click_on("Update Password")
-        
+
         expect(current_path).to eq(profile_path)
         expect(page).to have_content("Your password has been updated.")
       end
-      
+
       it "wont update if passwords don't match " do
         visit profile_path
-        click_link("Edit My Password") 
+        click_link("Edit My Password")
         expect(current_path).to eq(password_edit_path)
-        
+
         fill_in :password, with: "new pass"
         fill_in :confirm_password, with: "ne pass"
-        
+
         click_on("Update Password")
-        
+
         expect(page).to have_content("Password and password confirmation do not match.")
       end
     end
-  end 
+  end
 
-  describe "As an Admin user" do      
+  describe "As an Admin user" do
     it "Can not use duplicated email " do
       user_2 = create(:regular_user, email_address: "ben@fox.com")
       admin = create(:admin_user)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin) 
-      
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
       visit profile_path
 
-      click_link("Edit Profile")  
+      click_link("Edit Profile")
 
       fill_in :email_address, with: "ben@fox.com"
-    
+
       click_on "Submit"
       expect(page).to have_content("That email address is already in use.")
     end
   end
-end  
+end

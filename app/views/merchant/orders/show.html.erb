@@ -10,7 +10,7 @@
   <% if item.merchant.id == current_user.merchant_id %>
     <section id="item-<%= item.id %>">
       <p>Item: <%= link_to item.name, "/items/#{item.id}" %></p>
-      <p>Price: <%= item.price %></p>
+      <p>Price: <%= number_to_currency(item.price) %></p>
       <p>Quantity: <%= item.item_order(@order.id).quantity %></p>
       <% if item.item_order(@order.id).quantity <= item.inventory && item.item_order(@order.id).status != "fulfilled" %>
         <p><%= link_to "Fulfill Item", "/merchant/item_orders/#{item.item_order(@order.id).id}", method: :patch %></p>
