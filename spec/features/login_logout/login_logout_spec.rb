@@ -12,7 +12,7 @@ describe "When I login, I am redirected to my designated page" do
 
       click_button "Login"
 
-      expect(current_path).to eq(user_path)
+      expect(current_path).to eq('/profile')
       expect(page).to have_content("#{user.name}, you are now logged in!")
     end
   end
@@ -27,7 +27,7 @@ describe "When I login, I am redirected to my designated page" do
       fill_in :password, with: merchant.password
 
       click_button "Login"
-
+      save_and_open_page
       expect(current_path).to eq('/merchant')
       expect(page).to have_content("#{merchant.name}, you are now logged in!")
     end
@@ -77,7 +77,7 @@ describe "When I login, I am redirected to my designated page" do
       click_button "Login"
 
       visit login_path
-      expect(current_path).to eq('/')
+      expect(current_path).to eq('/profile')
       expect(page).to have_content("#{user.name}, you already logged in.")
     end
   end
@@ -95,7 +95,7 @@ describe "When I login, I am redirected to my designated page" do
 
       visit login_path
 
-      expect(current_path).to eq('/')
+      expect(current_path).to eq('/merchant')
       expect(page).to have_content("#{merchant.name}, you already logged in.")
     end
   end
@@ -113,7 +113,8 @@ describe "When I login, I am redirected to my designated page" do
 
       visit login_path
 
-      expect(current_path).to eq('/')
+     
+      expect(current_path).to eq(admin_path)
       expect(page).to have_content("#{admin.name}, you already logged in.")
     end
   end
