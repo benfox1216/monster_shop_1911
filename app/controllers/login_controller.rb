@@ -26,7 +26,7 @@ class LoginController < ApplicationController
       flash[:success] = "#{user.name}, you are now logged in!"
     else
       flash[:error] = 'Invalid credentials'
-      redirect_to login_path
+      redirect_to '/login'
     end
   end
 
