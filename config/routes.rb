@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get "/", to: "welcome#index"
 
   #merchants
-  resources :merchants do 
+  resources :merchants do
     resources :items, only: [:index, :new, :create]
-  end 
+  end
   # get "/merchants", to: "merchants#index"
   # get "/merchants/new", to: "merchants#new"
   # get "/merchants/:id", to: "merchants#show"
@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   # delete "/merchants/:id", to: "merchants#destroy"
 
   #items
-  resources :items, except: [:new, :create] do 
+  resources :items, except: [:new, :create] do
     resources :reviews, only: [:new, :create]
-  end 
+  end
 
   # get "/items", to: "items#index"
   # get "/items/:id", to: "items#show"
