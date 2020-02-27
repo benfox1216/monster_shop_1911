@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id  
+      session[:user_id] = @user.id
       redirect_to profile_path
       flash[:success] = "You are now registered and logged in"
     else
@@ -24,20 +24,18 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
-  end 
+  end
 
   def update
-    user = current_user
-    # binding.pry
-    if User.exists?(email_address: params[:email_address]) && user.email_address != params[:email_address] 
+    if User.exists?(email_address: params[:email_address]) && current_user.email_address != params[:email_address]
       flash[:error] = "That email address is already in use."
       redirect_to profile_edit_path
-    else 
-      user.update(user_params)
-      redirect_to profile_path
+    else
+      current_user.update!(user_params)
       flash[:success] = "You have updated your profle!"
-    end 
-  end 
+      redirect_to profile_path
+    end
+  end
   
   private
   

@@ -29,11 +29,13 @@ collapsible_thrower = dog_shop.items.create!(name: "Collapsible Thrower", descri
 batmobile = leggos.items.create(name: "1989 Batmobile", description: "Original Battmovile", price: 30, image: 'https://www.bigw.com.au/medias/sys_master/images/images/h1f/h87/13909151023134.jpg', inventory: 1, purchased: 4)
 olaf = leggos.items.create(name: "Olaf", description: "The snowman that can talk", price: 15, image: 'https://www.thebrickfan.com/wp-content/uploads/2019/10/Olafs-Traveling-Sleigh-40361.jpg', inventory: 20, purchased: 6)
 baby_yoda = leggos.items.create(name: "Baby Yoda", description: "Baby Yoda", price: 1000000000, image: 'https://www.htxt.co.za/wp-content/uploads/2020/02/75317-The-Mandalorian-The-Child-H-LEGO.png', inventory: 1, purchased: 0)
+N64 = leggos.items.create(name: "Nintendo 64", description: "Best gaming machine of the century", price: 300, inventory: 3, purchased: 2, active?: false)
 
 #users
 user_1 = User.create!(name: "Benji Wolf", address: "123 Heart Pl", city: "Reno", state: "NV", zip_code: "19443", email_address: "mrcool@gmail.com", password: "rh23489", role: 0)
 user_2 = User.create!(name: "Mike Wazowski ", address: "99887 Erie Ct", city: "San Francisco", state: "CA", zip_code: "23534", email_address: "pambelam@gmail.com", password: "r3afew4q3", role: 0)
 merchant = User.create!(name: "Danny Moron", address: "456 Uncool St", city: "Colorado Springs", state: "CO", zip_code: "54239", email_address: "uncannydanny@4realz.com", password: "t4389", role: 2, merchant: bike_shop)
+merchant_2 = User.create!(name: "Danny Moron", address: "456 Uncool St", city: "Colorado Springs", state: "CO", zip_code: "54239", email_address: "dannythemanny@myspace.com", password: "t4389", role: 2, merchant: dog_shop)
 admin = User.create!(name: "Zeke Fleek", address: "23832 Harbor Ave", city: "Boulder", state: "CO", zip_code: "54239", email_address: "zekeefleeky@altavista.com", password: "feqnu", role: 1)
 
 #orders
