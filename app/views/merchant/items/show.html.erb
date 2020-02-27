@@ -1,9 +1,11 @@
 <% @items.each do |item| %>
   <section id="item-<%= item.id %>">
     <h3><%= item.name %></h3>
-    <%= item.image %><br>
+    <img src= <%= item.image %>>
     Description: <%= item.description %><br>
-    Active?: <%= item.active? %><br>
+    Price: <%= item.price %><br>
+    <%= "Active" if item.active? %><br>
+    <%= "Inactive" if !item.active? %><br>
     Inventory: <%= item.inventory %><br>
     <% if item.active? %>
       <%= button_to "Deactivate", "/merchant/items/#{item.id}/deactivate", method: :patch %>
