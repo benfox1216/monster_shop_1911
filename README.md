@@ -3,9 +3,9 @@ BE Mod 2 Week 4/5 Group Project
 
 ## Background and Description
 
-"Monster Shop" is a fictitious e-commerce platform where users can register to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.\n
+"Monster Shop" is a fictitious e-commerce platform where users can register to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.
 
-This project was the penultimate assignment in Module 2 of the Turing School's backend engineering program. Undertaken as a group effort, the three of us worked from a starting brownfield for a period of eight days to implement basic e-commerce functions on this application including CRUD functionality, log in and authentication, authorization (for four different user types), cart functionality, and statistics for multiple aspects of the site.\n
+This project was the penultimate assignment in Module 2 of the Turing School's backend engineering program. Undertaken as a group effort, the three of us worked from a starting brownfield for a period of eight days to implement basic e-commerce functions on this application including CRUD functionality, log in and authentication, authorization (for four different user types), cart functionality, and statistics for multiple aspects of the site.
 
 View Monster Shop on Heroku **here**
 
@@ -21,7 +21,7 @@ To implement Monster Shop locally, run the following commands:
 
 <code>bundle update</code>
 
-<code>rails db:{drop,create,migrate,seed}</code>
+<code>rake db:{drop,create,migrate,seed}</code>
 
 Create a new [heroku](https://id.heroku.com/login) app and connect to your local monster shop repository with:
 
