@@ -11,6 +11,6 @@
     <p>Updated: <%= order.updated_at %></p>
     <p>Status: <%= order.status %></p>
     <p>Items: <%= order.items_count %></p>
-    <p>Total: $<%= order.grandtotal %></p>
+    <p>Total: <%= number_to_currency(order.grandtotal) %></p>
   </section>
 <% end %>
