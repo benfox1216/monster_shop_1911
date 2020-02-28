@@ -46,9 +46,9 @@ RSpec.describe 'merchant item show page', type: :feature do
 
     within "#item-#{@item_1.id}" do
       expect(page).to have_content(@item_1.name)
-      expect(page).to have_content(@item_1.image)
+      expect(page).to have_css("img[src*='#{@item_1.image}']")
       expect(page).to have_content(@item_1.description)
-      expect(page).to have_content(@item_1.active?)
+      expect(page).to have_content("Active")
       expect(page).to have_content(@item_1.inventory)
       click_button("Deactivate")
     end
@@ -57,9 +57,9 @@ RSpec.describe 'merchant item show page', type: :feature do
 
     within "#item-#{@item_3.id}" do
       expect(page).to have_content(@item_3.name)
-      expect(page).to have_content(@item_3.image)
+      expect(page).to have_css("img[src*='#{@item_3.image}']")
       expect(page).to have_content(@item_3.description)
-      expect(page).to have_content(@item_3.active?)
+      expect(page).to have_content("Active")
       expect(page).to have_content(@item_3.inventory)
       click_button("Deactivate")
     end

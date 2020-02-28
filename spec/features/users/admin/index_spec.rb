@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 describe "As an admin user" do
   describe "When I visit my dashboard" do
@@ -51,9 +51,7 @@ describe "As an admin user" do
       
       expect(current_path).to eq("/admin")
       
-      within "#packaged-#{order_3.id}" do
-        expect(page).to_not have_link(order_3.user.name)
-      end
+      expect(page).to_not have_css("#packaged-#{order_3.id}")
       
       within "#shipped-#{order_3.id}" do
         expect(page).to have_link(order_3.user.name)

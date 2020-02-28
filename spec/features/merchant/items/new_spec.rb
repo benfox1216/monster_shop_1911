@@ -18,7 +18,7 @@ RSpec.describe 'merchant item show page', type: :feature do
     inventory = 50
 
     click_button("Create Item")
-    expect(page).to have_content("Name can't be blank, Description can't be blank, Price can't be blank, Price is not a number, Image can't be blank, Inventory can't be blank, and Inventory is not a number")
+    expect(page).to have_content("Name can't be blank, Description can't be blank, Price can't be blank, Price is not a number, Inventory can't be blank, and Inventory is not a number")
 
     visit '/merchant/items/new'
 
@@ -35,7 +35,7 @@ RSpec.describe 'merchant item show page', type: :feature do
     expect(page).to have_content("Your new item has been saved.")
     expect(page).to have_content(name)
     expect(page).to have_content(description)
-    expect(page).to have_content(new_item.image)
+    expect(page).to have_css("img[src*='#{new_item.image}']")
     expect(new_item.image).to eq(image)
     expect(page).to have_content(inventory)
   end

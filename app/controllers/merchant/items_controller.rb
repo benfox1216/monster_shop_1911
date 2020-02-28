@@ -35,7 +35,7 @@ class Merchant::ItemsController < Merchant::BaseController
       flash[:success] = "You have successfully updated #{@item.name}'s information."
       redirect_to "/merchant/items"
     else
-      flash[:error] = "You must complete all required fields before your item will be updated."
+      flash[:error] = @item.errors.full_messages.to_sentence
       redirect_to "/merchant/items/#{@item.id}/edit"
     end
   end
