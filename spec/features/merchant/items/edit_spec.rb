@@ -50,6 +50,6 @@ RSpec.describe 'merchant item show page', type: :feature do
 
     click_button 'Update Item'
 
-    expect(page).to have_content("You must complete all required fields before your item will be updated.")
+    expect(page).to have_content("Name can't be blank")
   end
 end

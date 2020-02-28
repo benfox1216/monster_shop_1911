@@ -16,4 +16,20 @@ class Order <ApplicationRecord
   def fulfilled?
     !item_orders.pluck(:status).include?("unfulfilled")
   end
+  
+  def self.packaged
+    where(status: "packaged")
+  end
+  
+  def self.pending
+    where(status: "pending")
+  end
+  
+  def self.shipped
+    where(status: "shipped")
+  end
+  
+  def self.cancelled
+    where(status: "cancelled")
+  end
 end

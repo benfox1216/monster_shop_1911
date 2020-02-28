@@ -27,14 +27,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = current_user
-    if User.exists?(email_address: params[:email_address]) && user.email_address != params[:email_address]
+    if User.exists?(email_address: params[:email_address]) && current_user.email_address != params[:email_address]
       flash[:error] = "That email address is already in use."
       redirect_to profile_edit_path
     else
-      user.update(user_params)
-      redirect_to profile_path
+      current_user.update!(user_params)
       flash[:success] = "You have updated your profle!"
+      redirect_to profile_path
     end
   end
 

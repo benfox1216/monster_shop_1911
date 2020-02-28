@@ -1,10 +1,23 @@
-<%= render partial: 'form', locals: {path: profile_edit_path,
-                                     method: :patch,
-                                     button_text: 'Submit',
-                                     name: (@user.name if @user),
-                                     address: (@user.address if @user),
-                                     city: (@user.city if @user),
-                                     state: (@user.state if @user),
-                                     zip_code: (@user.zip_code if @user),
-                                     email_address: (@user.email_address if @user)
-                                    } %>
+<center>
+  <%= form_tag "/profile/edit", method: :patch  do %>
+    <%= label_tag :name %>
+    <%= text_field_tag :name, @user.name, required: true %><br>
+    
+    <%= label_tag :address %>
+    <%= text_field_tag :address, @user.address, required: true %><br>
+    
+    <%= label_tag :city %>
+    <%= text_field_tag :city, @user.city, required: true %><br>
+    
+    <%= label_tag :state %>
+    <%= text_field_tag :state, @user.state, required: true %><br>
+    
+    <%= label_tag "Zip Code" %>
+    <%= text_field_tag :zip_code, @user.zip_code, required: true %><br>
+    
+    <%= label_tag "Email Address" %>
+    <%= text_field_tag :email_address, @user.email_address, required: true %><br>
+
+    <%= submit_tag 'Submit' %>
+  <% end %>
+</center>

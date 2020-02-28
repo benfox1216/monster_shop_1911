@@ -1,18 +1,20 @@
 <% @items.each do |item| %>
   <section id="item-<%= item.id %>">
     <h3><%= item.name %></h3>
-    <%= item.image %><br>
+    <img src= <%= item.image %>>
     Description: <%= item.description %><br>
-    Active?: <%= item.active? %><br>
+    Price: <%= item.price %><br>
+    <%= "Active" if item.active? %><br>
+    <%= "Inactive" if !item.active? %><br>
     Inventory: <%= item.inventory %><br>
     <% if item.active? %>
       <%= button_to "Deactivate", "/merchant/items/#{item.id}/deactivate", method: :patch %>
-    <% else %>
+    <% elsif item.merchant.status == "enabled" %>
       <%= button_to "Activate", "/merchant/items/#{item.id}/activate", method: :patch %>
     <% end %>
     <%= button_to "Edit", "/merchant/items/#{item.id}/edit", method: :get %>
     <% if item.no_orders? %>
-      <%= button_to "Delete", "/merchant/items/#{item.id}/delete", method: :delete %>
+      <%= button_to "Delete", "/merchant/items/#{item.id}", method: :delete %>
     <% end %>
   </section>
 <% end %>

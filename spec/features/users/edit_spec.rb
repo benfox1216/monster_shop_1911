@@ -152,7 +152,11 @@ describe "As a registered user" do
       user_2 = create(:regular_user, email_address: "ben@fox.com")
       admin = create(:admin_user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 44df3337fa3869976fb6427322707ba083ab32eb
       visit profile_path
 
       click_link("Edit Profile")
@@ -163,4 +167,8 @@ describe "As a registered user" do
       expect(page).to have_content("That email address is already in use.")
     end
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 44df3337fa3869976fb6427322707ba083ab32eb
