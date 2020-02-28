@@ -3,7 +3,7 @@
 <h3>Updated: <%= @order.updated_at %></h3>
 <h3>Status: <%= @order.status %></h3>
 <h3>Items in order: <%= @order.items_count %></h3>
-<h3>Total: $<%= @order.grandtotal %></h3>
+<h3>Total: <%= number_to_currency(@order.grandtotal) %></h3>
 <h4><%= link_to "Cancel Order", "/profile/orders/#{@order.id}", method: :patch if @order.status != "shipped" %></h4>
 
 <% @order.items.each do |item| %>
@@ -12,7 +12,7 @@
     <p>Description: <%= item.description %></p>
     <p>Quantity: <%= item.item_order(@order.id).quantity %></p>
     <p>Price: <%= item.price %></p>
-    <p>Subtotal: <%= item.item_order(@order.id).subtotal %></p>
+    <p>Subtotal: <%= number_to_currency(item.item_order(@order.id).subtotal) %></p>
     <img src= <%= item.image %>>
     <br>
   </section>

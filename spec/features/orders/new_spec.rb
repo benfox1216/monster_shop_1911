@@ -15,7 +15,7 @@ RSpec.describe("New Order Page") do
       click_on "Add To Cart"
       visit "/items/#{@pencil.id}"
       click_on "Add To Cart"
-      
+
       @user = create(:regular_user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
@@ -23,7 +23,6 @@ RSpec.describe("New Order Page") do
       visit "/cart"
 
       click_on "Checkout"
-
       within "#order-item-#{@tire.id}" do
         expect(page).to have_link(@tire.name)
         expect(page).to have_link("#{@tire.merchant.name}")
@@ -54,7 +53,6 @@ RSpec.describe("New Order Page") do
     it "I see a form where I can enter my shipping info" do
       visit "/cart"
       click_on "Checkout"
-
       expect(page).to have_field(:name)
       expect(page).to have_field(:address)
       expect(page).to have_field(:city)

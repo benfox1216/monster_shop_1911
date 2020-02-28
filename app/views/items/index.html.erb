@@ -3,24 +3,34 @@
   <p align="center"><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" %></p>
 <% else %>
   <h1>All Items</h1>
-  
+
   <section id="most_popular">
     <h3>Most Popular Items:</h3>
-    <%= link_to Item.most_popular[0].name, "/items/#{Item.most_popular[0].id}" if Item.most_popular[0] %><br>
-    <%= link_to Item.most_popular[1].name, "/items/#{Item.most_popular[1].id}" if Item.most_popular[1] %><br>
-    <%= link_to Item.most_popular[2].name, "/items/#{Item.most_popular[2].id}" if Item.most_popular[2] %><br>
-    <%= link_to Item.most_popular[3].name, "/items/#{Item.most_popular[3].id}" if Item.most_popular[3] %><br>
-    <%= link_to Item.most_popular[4].name, "/items/#{Item.most_popular[4].id}" if Item.most_popular[4] %>
+    <%= link_to Item.most_popular[0].name, "/items/#{Item.most_popular[0].id}" if Item.most_popular[0] %>:
+    <%= Item.most_popular[0].purchased if Item.most_popular[0] %><br>
+    <%= link_to Item.most_popular[1].name, "/items/#{Item.most_popular[1].id}" if Item.most_popular[1] %>:
+    <%= Item.most_popular[1].purchased if Item.most_popular[1] %><br>
+    <%= link_to Item.most_popular[2].name, "/items/#{Item.most_popular[2].id}" if Item.most_popular[2] %>:
+    <%= Item.most_popular[2].purchased if Item.most_popular[2] %><br>
+    <%= link_to Item.most_popular[3].name, "/items/#{Item.most_popular[3].id}" if Item.most_popular[3] %>:
+    <%= Item.most_popular[3].purchased if Item.most_popular[3] %><br>
+    <%= link_to Item.most_popular[4].name, "/items/#{Item.most_popular[4].id}" if Item.most_popular[4] %>:
+    <%= Item.most_popular[4].purchased if Item.most_popular[4] %>
   </section>
   <br>
-  
+
   <section id="least_popular">
     <h3>Least Popular Items:</h3>
-    <%= link_to Item.least_popular[0].name, "/items/#{Item.least_popular[0].id}" if Item.least_popular[0] %><br>
-    <%= link_to Item.least_popular[1].name, "/items/#{Item.least_popular[1].id}" if Item.least_popular[1] %><br>
-    <%= link_to Item.least_popular[2].name, "/items/#{Item.least_popular[2].id}" if Item.least_popular[2] %><br>
-    <%= link_to Item.least_popular[3].name, "/items/#{Item.least_popular[3].id}" if Item.least_popular[3] %><br>
-    <%= link_to Item.least_popular[4].name, "/items/#{Item.least_popular[4].id}" if Item.least_popular[4] %>
+    <%= link_to Item.least_popular[0].name, "/items/#{Item.least_popular[0].id}" if Item.least_popular[0] %>:
+    <%= Item.least_popular[0].purchased if Item.least_popular[0] %><br>
+    <%= link_to Item.least_popular[1].name, "/items/#{Item.least_popular[1].id}" if Item.least_popular[1] %>:
+    <%= Item.least_popular[1].purchased if Item.least_popular[1] %><br>
+    <%= link_to Item.least_popular[2].name, "/items/#{Item.least_popular[2].id}" if Item.least_popular[2] %>:
+    <%= Item.least_popular[2].purchased if Item.least_popular[2] %><br>
+    <%= link_to Item.least_popular[3].name, "/items/#{Item.least_popular[3].id}" if Item.least_popular[3] %>:
+    <%= Item.least_popular[3].purchased if Item.least_popular[3] %><br>
+    <%= link_to Item.least_popular[4].name, "/items/#{Item.least_popular[4].id}" if Item.least_popular[4] %>:
+    <%= Item.least_popular[4].purchased if Item.least_popular[4] %>
   </section>
   <br>
 <% end %>
@@ -35,10 +45,10 @@
         <p> <%= item.description unless @merchant%> </p>
         <p>Price: <%=number_to_currency(item.price) %> </p>
         <p>Inventory: <%= item.inventory %> </p>
-        
+
         <% if !@merchant %>
         <% end %>
-        
+
         <% if item.active? %>
           <p>Active</p>
         <% else %>
