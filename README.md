@@ -7,7 +7,7 @@ BE Mod 2 Week 4/5 Group Project
 
 This project was the penultimate assignment in Module 2 of the Turing School's backend engineering program. Undertaken as a group effort, the three of us worked from a starting brownfield for a period of eight days to implement basic e-commerce functions on this application including CRUD functionality, log in and authentication, authorization (for four different user types), cart functionality, and statistics for multiple aspects of the site.
 
-View Monster Shop on Heroku **here**
+View Monster Shop on Heroku [here](https://dashboard.heroku.com/apps/monster-shop-group)
 
 ## Implementation
 
@@ -25,12 +25,60 @@ To implement Monster Shop locally, run the following commands:
 
 Create a new [heroku](https://id.heroku.com/login) app and connect to your local monster shop repository with:
 
-<code>heroku git:remote -a your_heroku_app_name</code>
+<code>heroku git:remot -a your_heroku_app_name</code>
 
 Deploy Monster Shop from heroku.
 
 ## Schema Design
 ![Image of Schema Design](https://i.imgur.com/32jB4Lz.png)
+
+## Code Snippets
+
+One design decision we made was to have a separate controller for the login functionality. Below is our create method for that controller:
+
+```ruby
+
+def create
+  user = User.find_by(email_address: params[:email])
+  if user.authenticate(params[:password])
+    if user.default?
+      redirect_to user_path
+    elsif user.merchant?
+      redirect_to merchant_path
+    elsif user.admin?
+      redirect_to admin_path
+    end
+    session[:user_id] = user.id
+    flash[:success] = "#{user.name}, you are now logged in!"
+  else
+    flash[:error] = 'Invalid credentials'
+    redirect_to login_path
+  end
+end
+
+```
+
+The item class was also something that took some intricate organization, as it has many validations and relationships. Below is our description within the item model of those validations and relationships:
+
+```ruby
+
+class Item <ApplicationRecord
+  belongs_to :merchant
+  has_many :reviews, dependent: :destroy
+  has_many :item_orders
+  has_many :orders, through: :item_orders
+
+  validates_presence_of :name,
+                        :description,
+                        :price,
+                        :image,
+                        :inventory
+  validates_inclusion_of :active?, :in => [true, false]
+  validates_numericality_of :price, greater_than: 0
+  validates_numericality_of :inventory, greater_than_or_equal_to: 0
+end
+
+```
 
 ## Contributors
 

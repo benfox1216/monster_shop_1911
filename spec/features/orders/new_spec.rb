@@ -23,7 +23,6 @@ RSpec.describe("New Order Page") do
       visit "/cart"
 
       click_on "Checkout"
-save_and_open_page
       within "#order-item-#{@tire.id}" do
         expect(page).to have_link(@tire.name)
         expect(page).to have_link("#{@tire.merchant.name}")
@@ -54,7 +53,6 @@ save_and_open_page
     it "I see a form where I can enter my shipping info" do
       visit "/cart"
       click_on "Checkout"
-# save_and_open_page
       expect(page).to have_field(:name)
       expect(page).to have_field(:address)
       expect(page).to have_field(:city)

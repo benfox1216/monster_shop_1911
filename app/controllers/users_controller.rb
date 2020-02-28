@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     user = current_user
-    if User.exists?(email_address: params[:email_address]) && user.email_address != params[:email_address] 
+    if User.exists?(email_address: params[:email_address]) && user.email_address != params[:email_address]
       flash[:error] = "That email address is already in use."
       redirect_to profile_edit_path
     else
