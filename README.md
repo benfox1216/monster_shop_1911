@@ -7,7 +7,7 @@ BE Mod 2 Week 4/5 Group Project
 
 This project was the penultimate assignment in Module 2 of the Turing School's backend engineering program. Undertaken as a group effort, the three of us worked from a starting brownfield for a period of eight days to implement basic e-commerce functions on this application including CRUD functionality, log in and authentication, authorization (for four different user types), cart functionality, and statistics for multiple aspects of the site.
 
-View Monster Shop on Heroku [here](https://dashboard.heroku.com/apps/monster-shop-group)
+View Monster Shop on Heroku [here](https://monster-shop-group.herokuapp.com/)
 
 ## Implementation
 
