@@ -23,11 +23,9 @@ To implement Monster Shop locally, run the following commands:
 
 <code>rake db:{drop,create,migrate,seed}</code>
 
-Create a new [heroku](https://id.heroku.com/login) app and connect to your local monster shop repository with:
+To test, run `bundle exec rspec`. All 186 tests should pass, with 100% coverage.
 
-<code>heroku git:remot -a your_heroku_app_name</code>
-
-Deploy Monster Shop from heroku.
+To run the app on your local server, run `rails s`, then go to `localhost:3000`.
 
 ## Schema Design
 ![Image of Schema Design](https://i.imgur.com/32jB4Lz.png)
