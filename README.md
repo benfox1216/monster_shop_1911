@@ -13,7 +13,7 @@ View Monster Shop on Heroku [here](https://monster-shop-group.herokuapp.com/)
 
 To implement Monster Shop locally, run the following commands:
 
-<code>git clone git@github.com:benfox1216/monster_shop_1911.git</code>
+<code>git clone https://github.com/benfox1216/monster_shop_1911.git</code>
 
 <code>cd monster_shop_1911</code>
 
