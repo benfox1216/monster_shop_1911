@@ -17,7 +17,7 @@ To implement Monster Shop locally, run the following commands:
 
 <code>cd monster_shop_1911</code>
 
-<code>bundle install</code>
+<code>gem install bundler</code>
 
 <code>bundle update</code>
 
